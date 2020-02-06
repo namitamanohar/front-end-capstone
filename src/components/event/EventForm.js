@@ -51,7 +51,7 @@ export default (props) => {
                 date: event.eventDate
                 
             })
-                
+               
         } else {
             addEvent({
                 title: event.title,
@@ -61,7 +61,7 @@ export default (props) => {
                 date: event.eventDate,
                 userId: parseInt(localStorage.getItem("digi_student"), 10)
             })
-            .then(() => props.history.push("/"))
+            
         }
         }
     
@@ -95,7 +95,7 @@ export default (props) => {
                 <select
                     
                     name="eventTypeId"
-                    defaultValue={props.eventObject.eventType.name}
+                    defaultValue={event.eventTypeId}
                     className="form-control"
                     onChange={handleControlledInputChange}
                 >
