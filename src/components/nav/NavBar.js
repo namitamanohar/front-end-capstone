@@ -4,8 +4,11 @@ import { Link } from "react-router-dom"
 import "./NavBar.css"
 import { UserContext } from "../users/UserProvider"
 
+
+
+
 export default (props) => {
-  
+
 
   const { users } = useContext(UserContext)
   console.log(users)
@@ -17,7 +20,10 @@ export default (props) => {
     
   if (singleUserObject.userTypeId === 1){
 
+    
   return (
+
+    
     <ul className="navBar">
       <li className="navbar__item active">
                 <Link className="navbar__link" to="/">Home</Link>

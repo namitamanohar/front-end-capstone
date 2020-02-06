@@ -7,6 +7,7 @@ import "./DigiPlan.css"
 import RegisterTeacher from "./auth/RegisterTeacher"
 import RegisterStudent from "./auth/RegisterStudent"
 import ProviderProvider from "./provider/ProviderProvider"
+import { Button } from 'reactstrap';
 
 // conditional reendering here maybe
 export default () => (
