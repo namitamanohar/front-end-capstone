@@ -1,12 +1,18 @@
 import React, { useContext, useState, useEffect } from "react"
 import { EventContext } from "./EventProvider"
 import "./Events.css"
+import { EventTypeContext } from "./EventTypeProvider"
 
-export default props => {
+export default (props) => {
     const { addEvent, updateEvent, events } = useContext(EventContext)
     const [event, setEvent] = useState({})
+    const { eventTypes } =useContext(EventTypeContext)
+    
+    console.log(props.eventObject)
+    // const editMode = props.match.params.hasOwnProperty("eventId")
 
-    const editMode = props.match.params.hasOwnProperty("eventId")
+    const eventTypeNumber =parseInt(event.eventTypeId)
+    console.log(eventTypeNumber)
 
     const handleControlledInputChange = (evt) => {
         /*
@@ -20,8 +26,8 @@ export default props => {
     }
 
     const setDefaults = () => {
-        if (editMode) {
-            const eventId = parseInt(props.match.params.eventId)
+        if (props.editMode) {
+            const eventId = parseInt(props.eventObject.id)
             const selectedEvent = events.find(e => e.id === eventId) || {}
             setEvent(selectedEvent)
             console.log(selectedEvent)
@@ -34,23 +40,28 @@ export default props => {
     }, [events])
 
     const constructNewEvent = () => {
-        if (editMode) {
+        if (props.editMode) {
             updateEvent({
                 id: event.id,
-                name: event.name,
-                location: event.location,
-                eventDate: event.eventDate,
-                userId: parseInt(localStorage.getItem("nutshell_user"), 10)
+                title: event.title,
+                userId: parseInt(localStorage.getItem("digi_student"), 10),
+                startTime: event.startTime,
+                endTime: event.endTime,
+                eventTypeId: eventTypeNumber,
+                date: event.eventDate
+                
             })
-                .then(() => props.history.push("/"))
+               
         } else {
             addEvent({
-                name: event.name,
-                location: event.location,
-                eventDate: event.eventDate,
-                userId: parseInt(localStorage.getItem("nutshell_user"), 10)
+                title: event.title,
+                startTime: event.startTime,
+                endTime: event.endTime,
+                eventTypeId: parseInt((eventTypeNumber),10),
+                date: event.eventDate,
+                userId: parseInt(localStorage.getItem("digi_student"), 10)
             })
-            .then(() => props.history.push("/"))
+            
         }
         }
     
@@ -58,16 +69,16 @@ export default props => {
 
     return (
         <form className="EventForm">
-            <h2 className="EventForm__title">{editMode ? "Edit Event" : "New Event"}</h2>
+            <h2 className="EventForm__title">{props.editMode ? "Edit Event" : "Add Event"}</h2>
+            
             <fieldset>
-
             <div className="form-group">
                 <label htmlFor="eventName">Event name</label>
                 <input
                     type="text"
                     id="eventName"
-                    name="name"
-                    defaultValue={event.name}
+                    name="title"
+                    defaultValue={event.title}
                     required
                     autoFocus
                     className="form-control"
@@ -76,26 +87,61 @@ export default props => {
                     onChange={handleControlledInputChange}
                     />
             </div>
-                    </fieldset>
-                    <fieldset>
-                        
-            <div className="form-group">
-                <label htmlFor="location">Location</label>
-                <input
-                    type="text"
-                    id="eventLocation"
-                    name="location"
-                    defaultValue={event.location}
-                    required
+        </fieldset>
+
+            <fieldset>
+                    <div className="form-group">
+                <label htmlFor="eventTypeId">Pick the Type of Event</label>
+                <select
+                    
+                    name="eventTypeId"
+                    defaultValue={event.eventTypeId}
                     className="form-control"
-                    proptype="varchar"
-                    placeholder="Event Location"
+                    onChange={handleControlledInputChange}
+                >
+                    <option value="0">Select the type of Event</option>
+                    {eventTypes.map(e => (
+                        <option key={e.id} value={e.id}>
+                            {e.name}
+                        </option>
+                    ))}
+                </select>
+                </div>
+                </fieldset>
+
+        <fieldset>
+            <div className="form-group">
+                <label htmlFor="startTime">Start Time</label>
+                <input 
+                    type="time" 
+                    min="09:00"
+                    max="18:00"
+                     required
+                    id="startTime"
+                    name="startTime"
+                    defaultValue={event.startTime}
+                    className="form-control"
                     onChange={handleControlledInputChange}
                     />
             </div>
-                    </fieldset>
-                    <fieldset>
+        </fieldset>
+            <fieldset>
+            <div className="form-group">
+                <label htmlFor="endTime">End Time</label>
+                <input type="time"
+                    min="09:00" 
+                    max="18:00" 
+                    required
+                    id="endTime"
+                    name="endTime"
+                    defaultValue={event.endTime}
+                    className="form-control" 
+                    onChange={handleControlledInputChange}
+                    />
+            </div>
+            </fieldset>
 
+            <fieldset>
             <div className="form-group">
                 <label htmlFor="date">Date</label>
                 <input
@@ -109,12 +155,12 @@ export default props => {
                     onChange={handleControlledInputChange}
                     />
             </div>
-                    </fieldset>
+        </fieldset>
             <button type="submit" onClick={evt => 
                     {evt.preventDefault() 
                     constructNewEvent()
                     }}
-                className="btn btn-primary"> {editMode ? "Update Event": "Make Event"} </button>
+                className="btn btn-primary"> {props.editMode ? "Edit Event": "Add Event"} </button>
         </form>
     )
 }
