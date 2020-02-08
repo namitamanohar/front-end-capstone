@@ -11,14 +11,14 @@ export default (props) => {
 
 
   const { users } = useContext(UserContext)
-  console.log(users)
+  console.log("ALL THE USERS",users)
 
   const singleUserObject = users.find(u => 
     {return u.id === parseInt(localStorage.getItem("digi_student"),10)}
   
     ) || {}
     
-  if (singleUserObject.userTypeId === 1){
+  if (singleUserObject.prefixId === 0){
 
     
   return (
