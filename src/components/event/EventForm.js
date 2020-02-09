@@ -21,6 +21,7 @@ export default (props) => {
         */
         const newEvent = Object.assign({}, event)
         newEvent[evt.target.name] = evt.target.value
+        console.log("newEvent",newEvent)
         setEvent(newEvent)
     }
 
@@ -148,7 +149,7 @@ export default (props) => {
                     type="date"
                     id="eventDate"
                     name="eventDate"
-                    value={event.date}
+                    defaultValue={event.date}
                     required
                     className="form-control"
                     placeholder="Event Date"

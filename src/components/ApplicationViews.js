@@ -6,6 +6,7 @@ import TeacherList from "./teachers/TeacherList";
 import { UserContext } from "./users/UserProvider";
 import TutoringRequestForm from "./tutoringRequests/TutoringRequestForm";
 import TutoringRequestStudentList from "./tutoringRequests/TutoringRequestStudentList";
+import TutoringRequestTeacherList from "./tutoringRequests/TutoringRequestTeacherList";
 
 
 
@@ -46,7 +47,11 @@ return (
   <>
         
             <ProviderProvider>
-          
+
+                <Route exact path ="/" render = { props =>
+                <TutoringRequestTeacherList {...props}/>}
+                />
+                
             </ProviderProvider>
       
         </>     
