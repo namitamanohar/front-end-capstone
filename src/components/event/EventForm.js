@@ -2,17 +2,17 @@ import React, { useContext, useState, useEffect } from "react"
 import { EventContext } from "./EventProvider"
 import "./Events.css"
 import { EventTypeContext } from "./EventTypeProvider"
+import moment from "moment" 
 
 export default (props) => {
     const { addEvent, updateEvent, events } = useContext(EventContext)
     const [event, setEvent] = useState({})
     const { eventTypes } =useContext(EventTypeContext)
     
-    console.log(props.eventObject)
-    // const editMode = props.match.params.hasOwnProperty("eventId")
+        // const editMode = props.match.params.hasOwnProperty("eventId")
 
     const eventTypeNumber =parseInt(event.eventTypeId)
-    console.log(eventTypeNumber)
+   
 
     const handleControlledInputChange = (evt) => {
         /*
@@ -21,7 +21,7 @@ export default (props) => {
         */
         const newEvent = Object.assign({}, event)
         newEvent[evt.target.name] = evt.target.value
-        console.log(newEvent)
+        console.log("newEvent",newEvent)
         setEvent(newEvent)
     }
 
@@ -29,14 +29,15 @@ export default (props) => {
         if (props.editMode) {
             const eventId = parseInt(props.eventObject.id)
             const selectedEvent = events.find(e => e.id === eventId) || {}
+
             setEvent(selectedEvent)
-            console.log(selectedEvent)
-        
+
         }
     }
 
     useEffect(() => {
         setDefaults()
+        console.log(event)
     }, [events])
 
     const constructNewEvent = () => {
@@ -89,13 +90,12 @@ export default (props) => {
             </div>
         </fieldset>
 
-            <fieldset>
-                    <div className="form-group">
-                <label htmlFor="eventTypeId">Pick the Type of Event</label>
-                <select
-                    
+            <fieldset >
+            <label htmlFor="eventTypeId">Pick the Type of Event</label>
+                    <div className="form-group" > 
+                 <select
                     name="eventTypeId"
-                    defaultValue={event.eventTypeId}
+                    value={event.eventTypeId}
                     className="form-control"
                     onChange={handleControlledInputChange}
                 >
@@ -106,6 +106,7 @@ export default (props) => {
                         </option>
                     ))}
                 </select>
+                
                 </div>
                 </fieldset>
 
@@ -148,7 +149,7 @@ export default (props) => {
                     type="date"
                     id="eventDate"
                     name="eventDate"
-                    defaultValue={event.eventDate}
+                    defaultValue={event.date}
                     required
                     className="form-control"
                     placeholder="Event Date"
@@ -164,3 +165,22 @@ export default (props) => {
         </form>
     )
 }
+
+
+
+
+// {props.editMode
+//     ? <select
+   
+//     name="eventTypeId"
+//     defaultValue={props.eventObject.eventType.name}
+//     className="form-control"
+//     onChange={handleControlledInputChange}
+// >
+//     <option value="0">Select the type of Event</option>
+//     {eventTypes.map(e => (
+//         <option key={e.id} value={e.id}>
+//             {e.name}
+//         </option>
+//     ))}
+// </select> :

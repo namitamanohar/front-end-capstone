@@ -1,0 +1,15 @@
+.teachers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.teacher{
+    flex-basis: 20%;
+    margin: 1em;
+    padding: 1em;
+    border: 1px solid  rgb(124, 29, 29);
+}
+.teacher__subject{
+  margin: auto; 
+}

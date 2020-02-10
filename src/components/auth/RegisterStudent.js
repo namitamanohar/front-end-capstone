@@ -8,8 +8,8 @@ const RegisterStudent = props => {
     const username = useRef()
     const password = useRef()
     const verifyPassword = useRef()
-    const subject = null 
-    const prefix = null 
+    const subject = 0 
+    const prefix = 0 
     const userType=useRef(0)
 
     const { userTypes } = useContext(UserTypeContext)
