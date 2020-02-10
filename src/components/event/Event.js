@@ -24,7 +24,7 @@ export default ({ event , className, history }) => {
       <section className="event">
         <h3 className="event__title">{event.title}</h3>
         <div className="event__type">Event Type: {event.eventType.name}</div>
-        <div className="event__date">When: {moment(event.startTime).format('LT') }--{moment(event.endTime).format('LT')}</div>
+        <div className="event__date">When: {moment(event.startTime,'HH:mm').format('hh:mm a') }--{moment(event.endTime,'HH:mm').format('hh:mm a') }</div>
         <div className="event__date">Date:  {moment(event.date).format("MM/DD/YYYY")}</div>
         <Button  color="secondary" onClick={toggle}>Edit </Button>
         <Modal isOpen={modal} toggle={toggle} className={className}>

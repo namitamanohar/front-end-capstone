@@ -32,7 +32,7 @@ export default (props) => {
     const constructNewTutoringRequest = () => {
          
             addTutoringRequest({
-      
+                title: TutoringRequest.title,
                 startTime: TutoringRequest.startTime,
                 endTime: TutoringRequest.endTime,
                 approved:false,
@@ -49,7 +49,23 @@ export default (props) => {
     return (
         <form className="TutoringRequestForm">
             <h2 className="TutoringRequestForm__title">Make Tutoring Request</h2>
-            
+            <fieldset>
+            <div className="form-group">
+                <label htmlFor="title">Tuturing reason</label>
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    defaultValue={TutoringRequest.title}
+                    required
+                    autoFocus
+                    className="form-control"
+                    placeholder="Event Title"
+                    proptype="varchar"
+                    onChange={handleControlledInputChange}
+                    />
+            </div>
+        </fieldset>
             <fieldset>
             <div className="form-group">
                 <label htmlFor="TutoringRequestTeacher">Pick the teacher</label>

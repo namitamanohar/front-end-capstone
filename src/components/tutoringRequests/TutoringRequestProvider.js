@@ -41,7 +41,7 @@ export const TutoringRequestProvider = (props) => {
 
     const updateTutoringRequest = tutoringRequest => {
         return fetch(`http://localhost:8088/TutoringRequests/${tutoringRequest.id}`, {
-            method: "PUT",
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             },

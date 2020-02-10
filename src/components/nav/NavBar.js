@@ -3,6 +3,20 @@ import React, { useContext } from "react"
 import { Link } from "react-router-dom"
 import "./NavBar.css"
 import { UserContext } from "../users/UserProvider"
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  NavbarText
+} from 'reactstrap';
 
 
 
@@ -18,13 +32,14 @@ export default (props) => {
   
     ) || {}
     
-  if (singleUserObject.prefixId === 0){
+  if (singleUserObject.prefixId === 4){
 
     
   return (
 
     
     <ul className="navBar">
+      <NavbarBrand className="mr-auto">StudentView</NavbarBrand>
       <li className="navbar__item active">
                 <Link className="navbar__link" to="/">Home</Link>
       </li>
@@ -56,6 +71,8 @@ export default (props) => {
 } else{
   return (
     <ul className="navBar">
+      <NavbarBrand className="mr-auto">TeacherView</NavbarBrand>
+
       <li className="navbar__item active">
                 <Link className="navbar__link" to="/">Home</Link>
       </li>

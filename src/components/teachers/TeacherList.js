@@ -8,7 +8,7 @@ export default () => {
   const { users } = useContext(UserContext)
 
     const teachers = users.filter(u => {
-      if(u.prefixId > 0){
+      if(u.prefixId != 4){
         return u 
       }
     })

@@ -17,6 +17,22 @@
  
 
 }
+.navbar__logoStudent{
+  color: black;
+  margin-top: 10px; 
+  list-style-type: none;
+  text-decoration: none;
+}
+.navbar__logoTeacher{
+  color: black;
+  margin-top: 10px; 
+  list-style-type: none;
+  text-decoration: none;
+  text-align: center;
+  justify-content: space-evenly;
+  padding: .5rem;
+}
+
 
 .navbar__link {
   display:flex;
