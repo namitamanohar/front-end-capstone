@@ -6,13 +6,20 @@ import React, { useContext } from "react"
 import { PrefixContext } from "../auth/PrefixProvider"
 import moment from "moment"
 import { TutoringRequestContext } from "./TutoringRequestProvider"
+import { UserContext } from "../users/UserProvider"
 
 export default ({ tutoringRequest }) => {
 
   const { updateTutoringRequest } = useContext(TutoringRequestContext)
 
-  console.log("teacher js Tutoring Request", tutoringRequest)
- 
+  const { users } = useContext(UserContext)
+
+  const studentName = users.filter(u => {
+    return u.id === tutoringRequest.activeUserId
+  })
+
+  
+ console.log("student Name on teacher page", studentName)
   const acceptedTutoringRequest = () => {
       updateTutoringRequest({
         id:tutoringRequest.id, 
@@ -35,7 +42,7 @@ export default ({ tutoringRequest }) => {
     return (
       <section className="tutoringRequestPending">
         <h4 className="tutoringRequest__reason">Reason:{tutoringRequest.title}</h4>
-        {/* <p className="tutoringRequest__student"> {student.firstName}{student.lastName}</p> */}
+        <p className="tutoringRequest__student">Student Name: {studentName.map(s => {return s.firstName})} {studentName.map(s => {return s.lastName})}</p>
         <p className="tutoringRequest__date">Date: {moment(tutoringRequest.date).format("MM/DD/YYYY")}</p>    
         <p className="tutoringRequest__time">Tutoring Time: {moment(tutoringRequest.startTime,'HH:mm').format('hh:mm a') }--{moment(tutoringRequest.endTime,'HH:mm').format('hh:mm a') }</p> 
         <button className="acceptTutoringRequest"
@@ -59,22 +66,9 @@ export default ({ tutoringRequest }) => {
     return (
       <section className="tutoringRequestAccepted">
         <h4 className="tutoringRequest__reason">{tutoringRequest.title}</h4>
-        {/* <p className="tutoringRequest__student"> {student.firstName}{student.lastName}</p> */}
+        <p className="tutoringRequest__student">Student Name: {studentName.map(s => {return s.firstName})} {studentName.map(s => {return s.lastName})}</p>
         <p className="tutoringRequest__date">Date: {moment(tutoringRequest.date).format("MM/DD/YYYY")}</p>    
-        <p className="tutoringRequest__time">Tutoring Time: {moment(tutoringRequest.startTime,'HH:mm').format('hh:mm a') }--{moment(tutoringRequest.endTime,'HH:mm').format('hh:mm a') }</p>      
-        <button className="acceptTutoringRequest"
-        onClick = {
-          () => {
-            acceptedTutoringRequest()
-          }
-        }>Accept</button>     
-        <button className="declineTutoringRequest"
-        onClick ={
-          () => {
-            declinedTutoringRequest()
-          }
-        }>Decline</button>     
-
+        <p className="tutoringRequest__time">Tutoring Time: {moment(tutoringRequest.startTime,'HH:mm').format('hh:mm a') }--{moment(tutoringRequest.endTime,'HH:mm').format('hh:mm a') }</p>        
       </section>
     )
 

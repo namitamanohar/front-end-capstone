@@ -17,12 +17,16 @@ export default () => {
   
 
   return (
-    <div className="teachers">
-      {
-        teachers.map(t => <Teacher key={t.id} teacher={t}/>)
-      }
+   
 
-    </div>
+        <div className="teachers">
+          {
+            teachers.map(t => <Teacher key={t.id} teacher={t}/>)
+          }
+
+        </div>
+
+   
   )
 
 }
