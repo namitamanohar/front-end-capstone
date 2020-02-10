@@ -14,7 +14,7 @@
 .events-Button{
   display:flex; 
   flex-wrap: wrap; 
-  justify-content: flex-start;
+  
 }
 
 .addEvent-button{

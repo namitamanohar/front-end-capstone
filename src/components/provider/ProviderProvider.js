@@ -7,6 +7,7 @@ import { SubjectProvider } from "../auth/SubjectProvider"
 import { EventProvider } from "../event/EventProvider"
 import { EventTypeProvider } from "../event/EventTypeProvider"
 import { TutoringRequestProvider } from "../tutoringRequests/TutoringRequestProvider"
+import { AbsentRequestProvider } from "../absentRequests/AbsentRequestProvider"
 
 
 
@@ -16,6 +17,8 @@ export default (props) => {
       <UserProvider>
         <UserTypeProvider>
           <TutoringRequestProvider>
+            <AbsentRequestProvider>
+
             <PrefixProvider>
                 <EventProvider>
                   <EventTypeProvider>
@@ -25,6 +28,7 @@ export default (props) => {
                 </EventTypeProvider>
             </EventProvider>
           </PrefixProvider>
+          </AbsentRequestProvider>
           </TutoringRequestProvider>
         </UserTypeProvider>
       </UserProvider>

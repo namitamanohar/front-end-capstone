@@ -4,6 +4,7 @@ import TutoringRequestStudent from "./TutoringRequestStudent"
 import "./TutoringRequests.css"
 import { PrefixContext } from "../auth/PrefixProvider"
 import { SubjectContext } from "../auth/SubjectProvider"
+import moment from "moment"
 
 
 export default () => {
@@ -18,6 +19,7 @@ export default () => {
    console.log("SOS", parseInt(localStorage.getItem("digi_student")))
    console.log("activer tutor requests STUDENT", activeTutoringRequests)
 
+   activeTutoringRequests.sort((a, b) => moment(a.date).valueOf() -moment(b.date).valueOf())
    
 
   return (

@@ -1,12 +1,11 @@
 import React, { useContext, useState, useEffect } from "react"
-import { TutoringRequestContext } from "./TutoringRequestProvider"
-import "./TutoringRequests.css"
-
+import { AbsentRequestContext } from "./AbsentRequestProvider"
+import "./AbsentRequests.css"
 import { UserContext } from "../users/UserProvider"
 
 export default (props) => {
-    const { addTutoringRequest, updateTutoringRequest, TutoringRequests } = useContext(TutoringRequestContext)
-    const [TutoringRequest, setTutoringRequest] = useState({})
+    const { addAbsentRequest } = useContext(AbsentRequestContext)
+    const [absentRequest, setAbsentRequest] = useState({})
     
 
     const { users } = useContext(UserContext)
@@ -21,23 +20,24 @@ export default (props) => {
 
     const handleControlledInputChange = (evt) => {
      
-        const newTutoringRequest = Object.assign({}, TutoringRequest)
-        newTutoringRequest[evt.target.name] = evt.target.value
-        setTutoringRequest(newTutoringRequest)
-        console.log("tutoring Request to see id", TutoringRequest)
+        const newAbsentRequest = Object.assign({}, absentRequest)
+        newAbsentRequest[evt.target.name] = evt.target.value
+        setAbsentRequest(newAbsentRequest)
+        
     }
 
     
 
-    const constructNewTutoringRequest = () => {
+    const constructNewAbsentRequest = () => {
          
-            addTutoringRequest({
-                title: TutoringRequest.title,
-                startTime: TutoringRequest.startTime,
-                endTime: TutoringRequest.endTime,
+            addAbsentRequest({
+                title: absentRequest.title,              
                 approved:false,
-                date: TutoringRequest.TutoringRequestDate,
-                userId: parseInt((TutoringRequest.teacher),10),
+                date: absentRequest.AbsentRequestDate,
+                startTime:absentRequest.startTime, 
+                endTime:absentRequest.endTime,
+                timestamp:Date.now(),
+                userId: parseInt((absentRequest.teacher),10),
                 activeUserId: parseInt(localStorage.getItem("digi_student"), 10)
             })
             
@@ -47,20 +47,20 @@ export default (props) => {
 
 
     return (
-        <form className="TutoringRequestForm">
-            <h2 className="TutoringRequestForm__title">Make Tutoring Request</h2>
+        <form className="AbsentRequestForm">
+            <h2 className="AbsentRequestForm__title">Make An Absent Request</h2>
             <fieldset>
             <div className="form-group">
-                <label htmlFor="title">Tuturing reason</label>
+                <label htmlFor="title">Reason for Absence</label>
                 <input
                     type="text"
                     id="title"
                     name="title"
-                    defaultValue={TutoringRequest.title}
+                    defaultValue={absentRequest.title}
                     required
                     autoFocus
                     className="form-control"
-                    placeholder="Event Title"
+                    placeholder="Reason for Absence"
                     proptype="varchar"
                     onChange={handleControlledInputChange}
                     />
@@ -68,10 +68,10 @@ export default (props) => {
         </fieldset>
             <fieldset>
             <div className="form-group">
-                <label htmlFor="TutoringRequestTeacher">Pick the teacher</label>
+                <label htmlFor="AbsentRequestTeacher">Pick the teacher</label>
                 <select
                     name="teacher"
-                    value={TutoringRequest.teacher}
+                    value={absentRequest.teacher}
                     className="form-control"
                     onChange={handleControlledInputChange}
                 >
@@ -97,7 +97,7 @@ export default (props) => {
                      required
                     id="startTime"
                     name="startTime"
-                    defaultValue={TutoringRequest.startTime}
+                    defaultValue={absentRequest.startTime}
                     className="form-control"
                     onChange={handleControlledInputChange}
                     />
@@ -112,7 +112,7 @@ export default (props) => {
                     required
                     id="endTime"
                     name="endTime"
-                    defaultValue={TutoringRequest.endTime}
+                    defaultValue={absentRequest.endTime}
                     className="form-control" 
                     onChange={handleControlledInputChange}
                     />
@@ -121,24 +121,24 @@ export default (props) => {
 
             <fieldset>
             <div className="form-group">
-                <label htmlFor="date">Date</label>
+                <label htmlFor="date">Date of Absence: Past or Present?</label>
                 <input
                     type="date"
-                    id="TutoringRequestDate"
-                    name="TutoringRequestDate"
-                    value={TutoringRequest.date}
+                    id="date"
+                    name="date"
+                    value={absentRequest.date}
                     required
                     className="form-control"
-                    placeholder="TutoringRequest Date"
+                    placeholder="AbsentRequest Date"
                     onChange={handleControlledInputChange}
                     />
             </div>
         </fieldset>
             <button type="submit" onClick={evt => 
                     {evt.preventDefault() 
-                    constructNewTutoringRequest()
+                    constructNewAbsentRequest()
                     }}
-                className="btn btn-primary"> Add Tutoring Request</button>
+                className="btn btn-primary"> Add Absent Request</button>
         </form>
     )
 }

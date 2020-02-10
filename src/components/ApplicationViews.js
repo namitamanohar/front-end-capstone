@@ -7,6 +7,9 @@ import { UserContext } from "./users/UserProvider";
 import TutoringRequestForm from "./tutoringRequests/TutoringRequestForm";
 import TutoringRequestStudentList from "./tutoringRequests/TutoringRequestStudentList";
 import TutoringRequestTeacherList from "./tutoringRequests/TutoringRequestTeacherList";
+import AbsentRequestForm from "./absentRequests/AbsentRequestForm";
+import AbsentRequestStudentList from "./absentRequests/AbsentRequestStudentList";
+import AbsentRequestTeacherList from "./absentRequests/AbsentRequestTeacherList";
 
 
 
@@ -25,9 +28,9 @@ if(activeUser.prefixId === 4){
               <Route exact path="/" render={props => 
                 <EventList {...props} />}
                 />
-            <Route exact path="/" render={props =>
-              <TeacherList {...props}/>}
-              />
+              <Route exact path="/" render={props =>
+                <TeacherList {...props}/>}
+                />
 
               <Route exact path="/" render={props =>
               <TutoringRequestForm {...props}/>}
@@ -35,9 +38,14 @@ if(activeUser.prefixId === 4){
               <Route exact path="/" render={props =>
               <TutoringRequestStudentList {...props}/>}
               />
+              <Route exact path="/absentRequests" render={props =>
+              <AbsentRequestForm {...props}/>}
+              />
+              <Route exact path="/absentRequests" render={props =>
+              <AbsentRequestStudentList {...props}/>}
+              />
 
-           
-      
+          
             </ProviderProvider>
       
         </>
@@ -50,6 +58,9 @@ return (
 
                 <Route exact path ="/" render = { props =>
                 <TutoringRequestTeacherList {...props}/>}
+                />
+                <Route exact path ="/" render = { props =>
+                <AbsentRequestTeacherList {...props}/>}
                 />
 
             </ProviderProvider>

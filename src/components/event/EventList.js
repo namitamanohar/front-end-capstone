@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react"
 import "./Events.css"
 import { EventContext } from "./EventProvider"
 import Event from "./Event"
-
+import moment from "moment"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import EventForm from "./EventForm";
 
@@ -12,6 +12,7 @@ import EventForm from "./EventForm";
 export default (props) => {
     const { events } = useContext(EventContext)
 
+  
     const {
         buttonLabel,
         className
@@ -22,11 +23,13 @@ export default (props) => {
       const toggle = () => setModal(!modal);
    
 
-   const activerUserEvents = events.filter(e => 
+   const activeUserEvents = events.filter(e => 
     {return e.userId === parseInt(localStorage.getItem("digi_student"),10)
    })
 
+   const sortedEvents = activeUserEvents.sort((a, b) => moment(a.date).valueOf() -moment(b.date).valueOf())
 
+   moment().valueOf()
     return (
         <>
             <h1>Events</h1>
@@ -34,12 +37,12 @@ export default (props) => {
                 <div className="events">
 
                     {
-                        activerUserEvents.map(e => {
+                        activeUserEvents.map(e => {
                             return <Event key={e.id} event={e} className={className} {...props}/>
                         })
                     }
             
-                </div>
+            
                 <div className="addEvent-button">
                     <img className="addButton" src={require ("./addImage.svg")}
                         // onclick here for opening the modal 
@@ -57,6 +60,7 @@ export default (props) => {
                     <Button color="secondary" onClick={toggle}>Cancel</Button> */}
                     </ModalFooter>
                 </Modal>
+            </div>
             </div>
         </>
     )
