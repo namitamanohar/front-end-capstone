@@ -32,6 +32,7 @@ export default ({prefix, subject, absentRequest}) => {
         <p className="absentRequest__title">Reason: {absentRequest.title}</p>    
         <p className="absentRequest__date">Date: {moment(absentRequest.date).format("MM/DD/YYYY")}</p>    
         <p className="absentRequest__time">Absent Time: {moment(absentRequest.startTime,'HH:mm').format('hh:mm a') }--{moment(absentRequest.endTime,'HH:mm').format('hh:mm a') }</p>    
+        <p className="absentRequest__image"> <img src={absentRequest.image}/></p>    
       </section>
     )
 

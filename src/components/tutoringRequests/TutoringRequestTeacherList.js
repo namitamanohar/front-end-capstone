@@ -41,19 +41,21 @@ export default () => {
 
 
   return (
-<div>
-      <h3>Tutoring Requests</h3>
-    <div className="tutoringRequests">
-      {
-        activeTeacherTutoringRequests.map(a =>
-            <TutoringRequestTeacher key={a.id} tutoringRequest={a}
-            />
-            
-            )
-          }
-  
+    <>
+      <div className="tutoring">
+            <h3>Tutoring Requests</h3>
+          <div className="tutoringRequests">
+            {
+              activeTeacherTutoringRequests.map(a =>
+                  <TutoringRequestTeacher key={a.id} tutoringRequest={a}
+                  />
+                  
+                  )
+                }
+        
+          </div>
     </div>
-    </div>
+    </>
   )
 
 }

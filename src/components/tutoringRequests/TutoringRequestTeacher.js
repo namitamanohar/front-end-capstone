@@ -7,10 +7,14 @@ import { PrefixContext } from "../auth/PrefixProvider"
 import moment from "moment"
 import { TutoringRequestContext } from "./TutoringRequestProvider"
 import { UserContext } from "../users/UserProvider"
+import { EventContext } from "../event/EventProvider"
 
 export default ({ tutoringRequest }) => {
 
   const { updateTutoringRequest } = useContext(TutoringRequestContext)
+
+  const timestamp = tutoringRequest.hasOwnProperty('timestamp')
+
 
   const { users } = useContext(UserContext)
 
@@ -26,6 +30,12 @@ export default ({ tutoringRequest }) => {
         timestamp: Date.now(), 
         approved:true 
       })
+
+    // const approvedTutoringRequest = tutoringRequests.find(t => {
+    //   return t.id === tutoringRequest.id
+    // })
+    // events.push(approvedTutoringRequest)
+      
   }
 
   const declinedTutoringRequest = () => {
@@ -36,7 +46,7 @@ export default ({ tutoringRequest }) => {
     })
   }
 
-  if(tutoringRequest.approved === false ){
+  if(tutoringRequest.approved === false && timestamp === false   ){
      
     
     return (
@@ -61,8 +71,7 @@ export default ({ tutoringRequest }) => {
       </section>
     )
 
-
-  }else {
+  }else if(tutoringRequest.approved === true && timestamp ===true ) {
     return (
       <section className="tutoringRequestAccepted">
         <h4 className="tutoringRequest__reason">{tutoringRequest.title}</h4>
@@ -72,7 +81,12 @@ export default ({ tutoringRequest }) => {
       </section>
     )
 
+  }else if (tutoringRequest.approved === false && timestamp === true ){
+    return(
+      ""
+    )
   }
+
 
 }
 
