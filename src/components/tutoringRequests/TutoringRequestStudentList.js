@@ -7,7 +7,7 @@ import { SubjectContext } from "../auth/SubjectProvider"
 import moment from "moment"
 
 
-export default () => {
+export default (props) => {
   const { tutoringRequests } = useContext(TutoringRequestContext)
   const { prefixes } = useContext(PrefixContext)
   const { subjects } = useContext(SubjectContext)
@@ -33,7 +33,7 @@ export default () => {
           } )}
             subject = {subjects.find( s => {
               return s.id === a.user.subjectId
-            })}
+            })} {...props}
            />)
       }
 
