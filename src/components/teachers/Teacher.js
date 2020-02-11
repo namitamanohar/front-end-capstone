@@ -15,13 +15,13 @@ export default ({teacher}) => {
 
 
 <Row>
-      <Col sm="6">
-        <Card body>
+      {/* <Col> */}
+        <Card className="teachers" body>
           <CardTitle>{teacher.prefix.name}.{teacher.lastName}</CardTitle>
           <CardText>{teacher.subject.name}</CardText>
           <Button>See More</Button>
         </Card>
-      </Col>
+      {/* </Col> */}
     </Row>
 )
 

@@ -1,5 +1,5 @@
 // this the nav bar component; link changes the link to /word
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import { Link } from "react-router-dom"
 import "./NavBar.css"
 import { UserContext } from "../users/UserProvider"
@@ -23,6 +23,9 @@ import {
 
 export default (props) => {
 
+  const [collapsed, setCollapsed] = useState(true);
+
+  const toggleNavbar = () => setCollapsed(!collapsed);
 
   const { users } = useContext(UserContext)
   console.log("ALL THE USERS",users)
@@ -34,11 +37,9 @@ export default (props) => {
     
   if (singleUserObject.prefixId === 4){
 
-    
-  return (
+     return (
 
-    
-    <ul className="navBar">
+  <ul className="navBar">
       <NavbarBrand className="mr-auto">StudentView</NavbarBrand>
       <li className="navbar__item active">
                 <Link className="navbar__link" to="/">Home</Link>
@@ -65,6 +66,7 @@ export default (props) => {
         }
     
     </ul>
+
   )
 
 
@@ -104,3 +106,30 @@ export default (props) => {
 
 
 
+ // <ul className="navBar">
+    //   <NavbarBrand className="mr-auto">StudentView</NavbarBrand>
+    //   <li className="navbar__item active">
+    //             <Link className="navbar__link" to="/">Home</Link>
+    //   </li>
+  
+      
+    //   <li className="navbar__item">
+    //     <Link className="navbar__link" to="/absentRequests">Absent Request</Link>
+    //   </li>
+    
+    //   {
+    // localStorage.getItem("digi_student")
+    //     ? <li className="navbar__item">
+    //         <Link className="navbar__link"
+    //             to=""
+    //             onClick={e => {
+    //                 e.preventDefault()
+    //                 localStorage.removeItem("digi_student")
+    //                 props.history.push("/")
+    //             }}
+    //         >Logout</Link>
+    //     </li>
+    //     : ""
+    //     }
+    
+    // </ul>

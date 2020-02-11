@@ -25,12 +25,15 @@ if(activeUser.prefixId === 4){
         <>
         
             <ProviderProvider>
-              <Route exact path="/" render={props => 
-                <EventList {...props} />}
-                />
-              <Route exact path="/" render={props =>
-                <TeacherList {...props}/>}
-                />
+            <h1>Events</h1>
+              <div className="eventsPlusTeachers">
+                <Route exact path="/" render={props => 
+                  <EventList {...props} />}
+                  />
+                <Route exact path="/" render={props =>
+                  <TeacherList {...props}/>}
+                  />
+              </div>
 
               <Route exact path="/" render={props =>
               <TutoringRequestForm {...props}/>}
