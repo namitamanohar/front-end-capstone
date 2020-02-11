@@ -1,12 +1,10 @@
 .teachers {
-  display: flex;
-  flex-wrap: wrap;
-  width:100%;
-  justify-content: flex-start;
+ 
+  flex-basis:20%; 
 }
 
 .teacher{
-    flex-basis: 20%;
+    flex-basis:100%; 
     margin: 1em;
     padding: 1em;
     border: 1px solid  rgb(124, 29, 29);

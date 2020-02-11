@@ -29,10 +29,9 @@ export default (props) => {
 
    const sortedEvents = activeUserEvents.sort((a, b) => moment(a.date).valueOf() -moment(b.date).valueOf())
 
-   moment().valueOf()
     return (
         <>
-            <h1>Events</h1>
+         
             <div className="events-Button">
                 <div className="events">
 
