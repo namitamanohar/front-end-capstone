@@ -24,19 +24,20 @@ export default () => {
 
 
   return (
-<div>
-      <h3>Absent Requests</h3>
-    <div className="AbsentRequests">
-      {
-        activeTeacherAbsentRequests.map(a =>
-            <AbsentRequestTeacher key={a.id} absentRequest={a}
-            />
-            
-            )
-          }
-  
-    </div>
-    </div>
+    <>
+      <div className="absences">
+        <h3>Absent Requests</h3>
+        <div className="absentRequests">
+          {
+            activeTeacherAbsentRequests.map(a =>
+                <AbsentRequestTeacher key={a.id} absentRequest={a}
+                />
+                
+                )
+              }
+        </div>
+        </div>
+    </>
   )
 
 }

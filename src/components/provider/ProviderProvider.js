@@ -18,7 +18,6 @@ export default (props) => {
         <UserTypeProvider>
           <TutoringRequestProvider>
             <AbsentRequestProvider>
-
             <PrefixProvider>
                 <EventProvider>
                   <EventTypeProvider>

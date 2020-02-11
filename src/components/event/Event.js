@@ -27,7 +27,7 @@ export default ({ event , className, history }) => {
 
     <Row>
       <Col sm="10">
-        <Card body>
+        <Card className="event" body>
           <CardTitle>{event.title}</CardTitle>
           <CardText>Event Type: {event.eventType.name}</CardText>
           <CardText>{moment(event.startTime,'HH:mm').format('hh:mm a') }--{moment(event.endTime,'HH:mm').format('hh:mm a') }</CardText>
