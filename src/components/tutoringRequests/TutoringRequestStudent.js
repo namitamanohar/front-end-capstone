@@ -3,8 +3,11 @@
 // declined tutoring request has timestamp and accepted: false 
 import React, { useContext } from "react"
 import { PrefixContext } from "../auth/PrefixProvider"
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button
+} from 'reactstrap';
 import moment from "moment"
-import TutoringRequestForm from "./TutoringRequestForm"
 import { TutoringRequestContext } from "./TutoringRequestProvider"
 
 
@@ -19,51 +22,59 @@ export default ({prefix, subject, tutoringRequest, history}) => {
   if(tutoringRequest.approved === false && timeStamp === false ){
       
     return (
-      <section className="tutoringRequestPending">
-        <h3 className="tutoringRequest__teacher">{prefix.name}.{tutoringRequest.user.lastName}</h3>
-        <p className="tutoringRequest__subject">Subject {subject.name}</p>
-        <p className="tutoringRequest__title">Reason: {tutoringRequest.title}</p>
-        <p className="tutoringRequest__date">Date: {moment(tutoringRequest.date).format("MM/DD/YYYY")}</p>    
-        <p className="tutoringRequest__time">Tutoring Time: {moment(tutoringRequest.startTime,'HH:mm').format('hh:mm a') }--{moment(tutoringRequest.endTime,'HH:mm').format('hh:mm a') }</p>  
-
-        <button   
+      <div>
+        <Card>
+          <CardBody className="tutoringRequestPending">
+            <CardTitle className="tutoringRequest__title">Reason: {tutoringRequest.title}</CardTitle>
+            <CardText className="tutoringRequest__teacer">{prefix.name}.{tutoringRequest.user.lastName} </CardText >
+            <CardText className="tutoringRequest__subject">Subject {subject.name}</CardText>
+            <CardText className="tutoringRequest__date">Date: {moment(tutoringRequest.date).format("MM/DD/YYYY")}</CardText>
+            <CardText className="tutoringRequest__time">Tutoring Time: {moment(tutoringRequest.startTime,'HH:mm').format('hh:mm a') }--{moment(tutoringRequest.endTime,'HH:mm').format('hh:mm a') }</CardText>  
+            <Button color="secondary"  
         onClick={
           () => {
             history.push(`/${tutoringRequest.id}`)
           }
-        }>Edit</button>     
-
-
-
-        <button onClick={() => {
-                deleteTutoringRequest(tutoringRequest)
-                .then(() => {
-                    history.push("/")            
-                })
-            }}>Delete</button>     
-      </section>
-    )
+        }>Edit</Button>     
+          <Button color="primary" onClick={() => {
+                      deleteTutoringRequest(tutoringRequest)
+                      .then(() => {
+                          history.push("/")            
+                      })
+                  }}>Delete</Button> 
+          </CardBody>
+        </Card>
+      </div>
+    );
+  
 
   }else if(tutoringRequest.approved === true && timeStamp === true) {
     return (
-      <section className="tutoringRequestAccepted">
-        <h3 className="tutoringRequest__teacher">{prefix.name} {tutoringRequest.user.lastName}</h3>
-        <p className="tutoringRequest__subject">Subject: {subject.name}</p>
-        <p className="tutoringRequest__title">Reason: {tutoringRequest.title}</p>    
-        <p className="tutoringRequest__date">Date: {moment(tutoringRequest.date).format("MM/DD/YYYY")}</p>    
-        <p className="tutoringRequest__time">Tutoring Time: {moment(tutoringRequest.startTime,'HH:mm').format('hh:mm a') }--{moment(tutoringRequest.endTime,'HH:mm').format('hh:mm a') }</p>    
-      </section>
+      ""
+    //   <div>
+    //   <Card>
+    //     <CardBody className="tutoringRequestAccepted">
+    //       <CardTitle className="tutoringRequest__title">Reason: {tutoringRequest.title}</CardTitle>
+    //       <CardText className="tutoringRequest__teacer">{prefix.name}.{tutoringRequest.user.lastName} </CardText >
+    //       <CardText className="tutoringRequest__subject">Subject {subject.name}</CardText>
+    //       <CardText className="tutoringRequest__date">Date: {moment(tutoringRequest.date).format("MM/DD/YYYY")}</CardText>
+    //       <CardText className="tutoringRequest__time">Tutoring Time: {moment(tutoringRequest.startTime,'HH:mm').format('hh:mm a') }--{moment(tutoringRequest.endTime,'HH:mm').format('hh:mm a') }</CardText>  
+    //     </CardBody>
+    //   </Card>
+    // </div>
     )
 
   }else if(tutoringRequest.approved === false && timeStamp === true) {
     return (
-      <section className="tutoringRequestDeclined">
-        <h3 className="tutoringRequest__teacher">{prefix.name} {tutoringRequest.user.lastName}</h3>
-        <p className="tutoringRequest__subject">Subject: {subject.name}</p>
-        <p className="tutoringRequest__title">Reason: {tutoringRequest.title}</p>    
-        <p className="tutoringRequest__date">Date: {moment(tutoringRequest.date).format("MM/DD/YYYY")}</p>    
-        <p className="tutoringRequest__time">Tutoring Time: {moment(tutoringRequest.startTime,'HH:mm').format('hh:mm a') }--{moment(tutoringRequest.endTime,'HH:mm').format('hh:mm a') }</p>    
-      </section>
+  <Card>
+        <CardBody className="tutoringRequestDeclined">
+          <CardTitle className="tutoringRequest__title">Reason: {tutoringRequest.title}</CardTitle>
+          <CardText className="tutoringRequest__teacer">{prefix.name}.{tutoringRequest.user.lastName} </CardText >
+          <CardText className="tutoringRequest__subject">Subject {subject.name}</CardText>
+          <CardText className="tutoringRequest__date">Date: {moment(tutoringRequest.date).format("MM/DD/YYYY")}</CardText>
+          <CardText className="tutoringRequest__time">Tutoring Time: {moment(tutoringRequest.startTime,'HH:mm').format('hh:mm a') }--{moment(tutoringRequest.endTime,'HH:mm').format('hh:mm a') }</CardText>  
+        </CardBody>
+      </Card>
     )
 
 }
