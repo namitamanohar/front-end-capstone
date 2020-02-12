@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Route } from "react-router-dom";
 import ProviderProvider from "./provider/ProviderProvider"
 import EventList from "./event/EventList"
@@ -14,6 +14,10 @@ import AbsentRequestTeacherList from "./absentRequests/AbsentRequestTeacherList"
 
 
 export default props =>{
+
+ 
+
+
 const { users } = useContext(UserContext)
 const activeUser = users.find(u => {
   return u.id === parseInt(localStorage.getItem("digi_student"),10)
@@ -50,10 +54,10 @@ if(activeUser.prefixId === 4){
 
            
               <div className="eventsPlusTeachers">
-                <Route exact path="/:tutoringRequest(\d+)" render={props => 
+                <Route exact path="/:tutoringRequestId(\d+)" render={props => 
                   <EventList {...props} />}
                   />
-                <Route exact path="/:tutoringRequest(\d+)" render={props =>
+                <Route exact path="/:tutoringRequestId(\d+)" render={props =>
                   <TeacherList {...props}/>}
                   />
               </div>
