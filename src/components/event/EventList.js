@@ -5,6 +5,7 @@ import Event from "./Event"
 import moment from "moment"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import EventForm from "./EventForm";
+import { TutoringRequestContext } from "../tutoringRequests/TutoringRequestProvider"
 // put here 
 
 
@@ -12,6 +13,23 @@ import EventForm from "./EventForm";
 export default (props) => {
     const { events } = useContext(EventContext)
 
+    const { tutoringRequests } = useContext(TutoringRequestContext)
+
+    
+    const eventsAndTutoringRequests = []
+    
+    const activeTutoringRequests = tutoringRequests.filter(
+        t => {return t.activeUserId = parseInt(localStorage.getItem("digi_student"),10) }
+        ) || {} 
+        console.log("active tutoring requests", activeTutoringRequests)
+
+     const tutoringRequestAccepted= activeTutoringRequests.filter(a => {
+           if (a.approved === true && a.hasOwnProperty('timestamp') === true){
+           return eventsAndTutoringRequests.push(a) 
+        }
+      }) || {}
+
+      console.log("tutoringRequestsAccepted", tutoringRequestAccepted)
   
     const {
         buttonLabel,
@@ -25,10 +43,17 @@ export default (props) => {
 
    const activeUserEvents = events.filter(e => 
     {return e.userId === parseInt(localStorage.getItem("digi_student"),10)
-   })
+   }) || {}
 
-   const sortedEvents = activeUserEvents.sort((a, b) => moment(a.date).valueOf() -moment(b.date).valueOf())
+//    const sortedEvents = activeUserEvents.sort((a, b) => moment(a.date).valueOf() -moment(b.date).valueOf())
 
+  const eventsActive= activeUserEvents.map(a =>{
+       eventsAndTutoringRequests.push(a)
+   }) || {}
+
+   console.log("eventsAndTutoringRequests",eventsAndTutoringRequests)
+
+   const sortedEventsAndTutoringRequests = eventsAndTutoringRequests.sort((a, b) => moment(a.date).valueOf() -moment(b.date).valueOf())
     return (
         <>
          
@@ -36,15 +61,14 @@ export default (props) => {
                 <div className="events">
 
                     {
-                        activeUserEvents.map(e => {
-                            return <Event key={e.id} event={e} className={className} {...props} setModal={setModal} modal={modal}/>
+                        eventsAndTutoringRequests.map(e => {
+                            return <Event key={`${e.id}_${e.date}`} event={e} className={className} {...props} setModal={setModal} modal={modal}/>
                         })
                     }
             
             
                 <div className="addEvent-button">
                     <img className="addButton" src={require ("./addImage.svg")}
-                        // onclick here for opening the modal 
                         onClick={toggle}
                     />                   
                 </div>
@@ -55,8 +79,6 @@ export default (props) => {
                         <EventForm setModal={setModal} {...props} />
                     </ModalBody>
                     <ModalFooter>
-                    {/* <Button color="danger" onClick={toggle}>Add Event!</Button>{' '}
-                    <Button color="secondary" onClick={toggle}>Cancel</Button> */}
                     </ModalFooter>
                 </Modal>
             </div>

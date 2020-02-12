@@ -31,10 +31,7 @@ export default ({ tutoringRequest }) => {
         approved:true 
       })
 
-    // const approvedTutoringRequest = tutoringRequests.find(t => {
-    //   return t.id === tutoringRequest.id
-    // })
-    // events.push(approvedTutoringRequest)
+    
       
   }
 
