@@ -37,7 +37,7 @@ export default (props) => {
 
                     {
                         activeUserEvents.map(e => {
-                            return <Event key={e.id} event={e} className={className} {...props}/>
+                            return <Event key={e.id} event={e} className={className} {...props} setModal={setModal} modal={modal}/>
                         })
                     }
             
@@ -52,7 +52,7 @@ export default (props) => {
                     <ModalHeader toggle={toggle}>Events </ModalHeader>
 
                     <ModalBody>
-                        <EventForm  {...props} />
+                        <EventForm setModal={setModal} {...props} />
                     </ModalBody>
                     <ModalFooter>
                     {/* <Button color="danger" onClick={toggle}>Add Event!</Button>{' '}

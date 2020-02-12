@@ -6,13 +6,20 @@ import moment from "moment"
 
 export default (props) => {
     const { addEvent, updateEvent, events } = useContext(EventContext)
-    const [event, setEvent] = useState({})
+    const [event, setEvent] = useState({
+        "title":"", 
+        "eventTypeId":"", 
+        "startTime":"",
+        "endTime":"",
+        "date":""
+    })
     const { eventTypes } =useContext(EventTypeContext)
     
-        // const editMode = props.match.params.hasOwnProperty("eventId")
 
     const eventTypeNumber =parseInt(event.eventTypeId)
    
+
+  
 
     const handleControlledInputChange = (evt) => {
         /*
@@ -49,7 +56,7 @@ export default (props) => {
                 startTime: event.startTime,
                 endTime: event.endTime,
                 eventTypeId: eventTypeNumber,
-                date: event.eventDate
+                date: event.date
                 
             })
                
@@ -59,7 +66,7 @@ export default (props) => {
                 startTime: event.startTime,
                 endTime: event.endTime,
                 eventTypeId: parseInt((eventTypeNumber),10),
-                date: event.eventDate,
+                date: event.date,
                 userId: parseInt(localStorage.getItem("digi_student"), 10)
             })
             
@@ -79,7 +86,7 @@ export default (props) => {
                     type="text"
                     id="eventName"
                     name="title"
-                    defaultValue={event.title}
+                    value={event.title}
                     required
                     autoFocus
                     className="form-control"
@@ -120,7 +127,7 @@ export default (props) => {
                      required
                     id="startTime"
                     name="startTime"
-                    defaultValue={event.startTime}
+                    value={event.startTime}
                     className="form-control"
                     onChange={handleControlledInputChange}
                     />
@@ -135,7 +142,7 @@ export default (props) => {
                     required
                     id="endTime"
                     name="endTime"
-                    defaultValue={event.endTime}
+                    value={event.endTime}
                     className="form-control" 
                     onChange={handleControlledInputChange}
                     />
@@ -147,9 +154,9 @@ export default (props) => {
                 <label htmlFor="date">Date</label>
                 <input
                     type="date"
-                    id="eventDate"
-                    name="eventDate"
-                    defaultValue={event.date}
+                    id="date"
+                    name="date"
+                    value={event.date}
                     required
                     className="form-control"
                     placeholder="Event Date"
@@ -157,9 +164,10 @@ export default (props) => {
                     />
             </div>
         </fieldset>
-            <button type="submit" onClick={evt => 
+            <button type="submit"  onClick={evt => 
                     {evt.preventDefault() 
                     constructNewEvent()
+                    props.setModal(false)
                     }}
                 className="btn btn-primary"> {props.editMode ? "Edit Event": "Add Event"} </button>
         </form>
