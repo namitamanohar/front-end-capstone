@@ -4,12 +4,16 @@
 import React, { useContext } from "react"
 import { PrefixContext } from "../auth/PrefixProvider"
 import moment from "moment"
+import TutoringRequestForm from "./TutoringRequestForm"
+import { TutoringRequestContext } from "./TutoringRequestProvider"
 
 
-export default ({prefix, subject, tutoringRequest}) => {
+export default ({prefix, subject, tutoringRequest, history}) => {
 
   const { prefixes } = useContext(PrefixContext)
 
+  const { deleteTutoringRequest } = useContext(TutoringRequestContext)
+  
   const timeStamp = tutoringRequest.hasOwnProperty('timestamp')
   
   if(tutoringRequest.approved === false && timeStamp === false ){
@@ -20,7 +24,23 @@ export default ({prefix, subject, tutoringRequest}) => {
         <p className="tutoringRequest__subject">Subject {subject.name}</p>
         <p className="tutoringRequest__title">Reason: {tutoringRequest.title}</p>
         <p className="tutoringRequest__date">Date: {moment(tutoringRequest.date).format("MM/DD/YYYY")}</p>    
-        <p className="tutoringRequest__time">Tutoring Time: {moment(tutoringRequest.startTime,'HH:mm').format('hh:mm a') }--{moment(tutoringRequest.endTime,'HH:mm').format('hh:mm a') }</p>       
+        <p className="tutoringRequest__time">Tutoring Time: {moment(tutoringRequest.startTime,'HH:mm').format('hh:mm a') }--{moment(tutoringRequest.endTime,'HH:mm').format('hh:mm a') }</p>  
+
+        <button   
+        onClick={
+          () => {
+            history.push(`/${tutoringRequest.id}`)
+          }
+        }>Edit</button>     
+
+
+
+        <button onClick={() => {
+                deleteTutoringRequest(tutoringRequest)
+                .then(() => {
+                    history.push("/")            
+                })
+            }}>Delete</button>     
       </section>
     )
 

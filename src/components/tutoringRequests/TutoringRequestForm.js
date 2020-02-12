@@ -5,10 +5,12 @@ import "./TutoringRequests.css"
 import { UserContext } from "../users/UserProvider"
 
 export default (props) => {
-    const { addTutoringRequest, updateTutoringRequest, TutoringRequests } = useContext(TutoringRequestContext)
-    const [TutoringRequest, setTutoringRequest] = useState({})
+    const { addTutoringRequest, editTutoringReqest, tutoringRequests } = useContext(TutoringRequestContext)
+    const [tutoringRequest, setTutoringRequest] = useState({})
     
+    const editMode = props.match.params.hasOwnProperty("tutoringRequestId")
 
+    console.log("editMode True or false", editMode)
     const { users } = useContext(UserContext)
 
     const teacherArray = users.filter(u => {
@@ -18,29 +20,57 @@ export default (props) => {
     })
 
     
-
+ 
     const handleControlledInputChange = (evt) => {
      
-        const newTutoringRequest = Object.assign({}, TutoringRequest)
+        const newTutoringRequest = Object.assign({}, tutoringRequest)
         newTutoringRequest[evt.target.name] = evt.target.value
         setTutoringRequest(newTutoringRequest)
-        console.log("tutoring Request to see id", TutoringRequest)
+        console.log("tutoring Request to see id", newTutoringRequest)
     }
 
-    
+
+    const setDefaults = () => {
+        if (editMode) {
+            const tutoringRequestId = parseInt(props.match.params.tutoringRequestId)
+            const selectedTutoringRequest = tutoringRequests.find(t => t.id === tutoringRequestId) || {}
+            console.log("edit mode selected tutoring object", selectedTutoringRequest)
+            setTutoringRequest(selectedTutoringRequest)
+
+        }
+    }
+
+    useEffect(() => {
+        setDefaults()
+    }, [tutoringRequests])
 
     const constructNewTutoringRequest = () => {
-         
-            addTutoringRequest({
-                title: TutoringRequest.title,
-                startTime: TutoringRequest.startTime,
-                endTime: TutoringRequest.endTime,
+
+        if (editMode){
+            editTutoringReqest({
+                id:tutoringRequest.id,
+                title: tutoringRequest.title,
+                startTime: tutoringRequest.startTime,
+                endTime: tutoringRequest.endTime,
                 approved:false,
-                date: TutoringRequest.TutoringRequestDate,
-                userId: parseInt((TutoringRequest.teacher),10),
+                date: tutoringRequest.tutoringRequestDate,
+                userId: parseInt((tutoringRequest.teacher),10),
                 activeUserId: parseInt(localStorage.getItem("digi_student"), 10)
             })
-            
+            .then(() => props.history.push("/"))
+        } else {
+
+            addTutoringRequest({
+                title: tutoringRequest.title,
+                startTime: tutoringRequest.startTime,
+                endTime: tutoringRequest.endTime,
+                approved:false,
+                date: tutoringRequest.date,
+                userId: parseInt((tutoringRequest.teacher),10),
+                activeUserId: parseInt(localStorage.getItem("digi_student"), 10)
+            })
+            .then(() => props.history.push("/"))
+        } 
         
         }
     
@@ -48,19 +78,19 @@ export default (props) => {
 
     return (
         <form className="TutoringRequestForm">
-            <h2 className="TutoringRequestForm__title">Make Tutoring Request</h2>
+            <h2 className="TutoringRequestForm__title">{editMode ? "Edit Tutoring Request" : "Make Tutoring Request"}</h2>
             <fieldset>
             <div className="form-group">
-                <label htmlFor="title">Tuturing reason</label>
+                <label htmlFor="title">Tutoring Reason</label>
                 <input
                     type="text"
                     id="title"
                     name="title"
-                    defaultValue={TutoringRequest.title}
+                    defaultValue={tutoringRequest.title}
                     required
                     autoFocus
                     className="form-control"
-                    placeholder="Event Title"
+                    placeholder="Tutoring Reason"
                     proptype="varchar"
                     onChange={handleControlledInputChange}
                     />
@@ -71,7 +101,7 @@ export default (props) => {
                 <label htmlFor="TutoringRequestTeacher">Pick the teacher</label>
                 <select
                     name="teacher"
-                    value={TutoringRequest.teacher}
+                    value={tutoringRequest.userId}
                     className="form-control"
                     onChange={handleControlledInputChange}
                 >
@@ -97,7 +127,7 @@ export default (props) => {
                      required
                     id="startTime"
                     name="startTime"
-                    defaultValue={TutoringRequest.startTime}
+                    defaultValue={tutoringRequest.startTime}
                     className="form-control"
                     onChange={handleControlledInputChange}
                     />
@@ -112,7 +142,7 @@ export default (props) => {
                     required
                     id="endTime"
                     name="endTime"
-                    defaultValue={TutoringRequest.endTime}
+                    defaultValue={tutoringRequest.endTime}
                     className="form-control" 
                     onChange={handleControlledInputChange}
                     />
@@ -124,12 +154,12 @@ export default (props) => {
                 <label htmlFor="date">Date</label>
                 <input
                     type="date"
-                    id="TutoringRequestDate"
-                    name="TutoringRequestDate"
-                    value={TutoringRequest.date}
+                    id="date"
+                    name="date"
+                    defaultValue={tutoringRequest.date}
                     required
                     className="form-control"
-                    placeholder="TutoringRequest Date"
+                    placeholder="Tutoring Request Date"
                     onChange={handleControlledInputChange}
                     />
             </div>
@@ -138,7 +168,7 @@ export default (props) => {
                     {evt.preventDefault() 
                     constructNewTutoringRequest()
                     }}
-                className="btn btn-primary"> Add Tutoring Request</button>
+                className="btn btn-primary">{editMode ? "Edit Tutoring Request" : "Add Tutoring Request"}</button>
         </form>
     )
 }

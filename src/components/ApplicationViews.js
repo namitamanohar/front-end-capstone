@@ -48,7 +48,24 @@ if(activeUser.prefixId === 4){
               <AbsentRequestStudentList {...props}/>}
               />
 
-          
+           
+              <div className="eventsPlusTeachers">
+                <Route exact path="/:tutoringRequest(\d+)" render={props => 
+                  <EventList {...props} />}
+                  />
+                <Route exact path="/:tutoringRequest(\d+)" render={props =>
+                  <TeacherList {...props}/>}
+                  />
+              </div>
+
+              <Route
+                path="/:tutoringRequestId(\d+)"
+                render={props => <TutoringRequestForm {...props} />}
+              />
+                <Route exact path="/:tutoringRequestId(\d+)" render={props =>
+              <TutoringRequestStudentList {...props}/>}
+              />
+                
             </ProviderProvider>
       
         </>

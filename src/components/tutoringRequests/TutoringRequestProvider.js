@@ -32,8 +32,8 @@ export const TutoringRequestProvider = (props) => {
             .then(getTutoringRequests)
     }
 
-    const deleteTutoringRequest = tutoringRequestId => {
-        return fetch(`http://localhost:8088/TutoringRequests/${tutoringRequestId}`, {
+    const deleteTutoringRequest = tutoringRequest => {
+        return fetch(`http://localhost:8088/TutoringRequests/${tutoringRequest.id}`, {
             method: "DELETE",
         })
             .then(getTutoringRequests)
@@ -42,6 +42,16 @@ export const TutoringRequestProvider = (props) => {
     const updateTutoringRequest = tutoringRequest => {
         return fetch(`http://localhost:8088/TutoringRequests/${tutoringRequest.id}`, {
             method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(tutoringRequest)
+        })
+            .then(getTutoringRequests)
+    }
+    const editTutoringRequest = tutoringRequest => {
+        return fetch(`http://localhost:8088/TutoringRequests/${tutoringRequest.id}`, {
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -64,7 +74,7 @@ export const TutoringRequestProvider = (props) => {
 
     return (
         <TutoringRequestContext.Provider value={{
-            tutoringRequests, addTutoringRequest, deleteTutoringRequest, updateTutoringRequest
+            tutoringRequests, addTutoringRequest, deleteTutoringRequest, updateTutoringRequest, editTutoringRequest
         }}>
             {props.children}
         </TutoringRequestContext.Provider>
