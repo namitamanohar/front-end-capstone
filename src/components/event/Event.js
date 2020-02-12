@@ -4,6 +4,8 @@ import EventForm from "./EventForm";
 import { EventContext } from "./EventProvider";
 import moment from "moment";
 import { Card, CardTitle, CardText, CardBody, Row, Col } from 'reactstrap';
+import { PrefixContext } from "../auth/PrefixProvider";
+import { SubjectContext } from "../auth/SubjectProvider";
 
 
 
@@ -13,19 +15,28 @@ export default ({ event , className  }) => {
 
   const { deleteEvent } = useContext(EventContext)
   
+  const { prefixes } = useContext(PrefixContext)
+  const { subjects } = useContext(SubjectContext)
 
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
 
 if(event.hasOwnProperty('timestamp')===true){
+  const prefix=prefixes.find(p => {
+    return p.id === event.user.prefixId
+  })
+
+  const subject = subjects.find(s => {
+    return s.id === event.user.subjectId 
+  })
   return (
     <div>
     <Card className="event">
       <CardBody>
         <CardTitle className="tutoringRequest__title">Reason: {event.title}</CardTitle>
-        <CardText className="tutoringRequest__teacer"> {event.user.lastName} </CardText >
-        {/* <CardText className="tutoringRequest__subject">Subject {subject.name}</CardText> */}
+        <CardText className="tutoringRequest__teacer">{prefix.name}. {event.user.lastName} </CardText >
+        <CardText className="tutoringRequest__subject">Subject: {subject.name}</CardText>
         <CardText className="tutoringRequest__date">Date: {moment(event.date).format("MM/DD/YYYY")}</CardText>
         <CardText className="tutoringRequest__time">Tutoring Time: {moment(event.startTime,'HH:mm').format('hh:mm a') }--{moment(event.endTime,'HH:mm').format('hh:mm a') }</CardText>  
       </CardBody>

@@ -48,7 +48,7 @@ export default ({ tutoringRequest }) => {
     
     return (
       <section className="tutoringRequestPending">
-        <h4 className="tutoringRequest__reason">Reason:{tutoringRequest.title}</h4>
+        <h4 className="tutoringRequest__reason">{tutoringRequest.title}</h4>
         <p className="tutoringRequest__student">Student Name: {studentName.map(s => {return s.firstName})} {studentName.map(s => {return s.lastName})}</p>
         <p className="tutoringRequest__date">Date: {moment(tutoringRequest.date).format("MM/DD/YYYY")}</p>    
         <p className="tutoringRequest__time">Tutoring Time: {moment(tutoringRequest.startTime,'HH:mm').format('hh:mm a') }--{moment(tutoringRequest.endTime,'HH:mm').format('hh:mm a') }</p> 
