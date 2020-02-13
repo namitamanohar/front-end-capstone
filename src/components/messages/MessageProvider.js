@@ -8,7 +8,7 @@ export const MessageProvider = (props) => {
     const [messages, setMessages] = useState([])
 
     const getMessages = () => {
-        return fetch("http://localhost:8088/messages?_expand=user")
+        return fetch("http://localhost:8088/messages?_expand=user&_expand=messageType")
             .then(res => res.json())
             .then(setMessages)
     }
@@ -43,10 +43,7 @@ export const MessageProvider = (props) => {
             .then(getMessages)
     }
 
-    /*
-        Load all animals when the component is mounted. Ensure that
-        an empty array is the second argument to avoid infinite loop.
-    */
+ 
     useEffect(() => {
         getMessages()
     }, [])

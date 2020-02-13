@@ -12,7 +12,6 @@ export const MessageTypeProvider = (props) => {
     }
 
     
-    
     useEffect(() => {
         getMessageTypes()
     }, [])

@@ -5,12 +5,13 @@ import { MessageContext } from "./MessageProvider"
 
 export default (props) => {
 
-    const { addMessage} = useContext(MessageContext)
+    const { messages, addMessage, updateMessage} = useContext(MessageContext)
     const [message, setMessage] = useState({})
     
     const { messageTypes } = useContext(MessageTypeContext)
 
-   
+    const editMode = props.match.params.hasOwnProperty("messageBoardId")
+
     
     const handleControlledInputChange = (evt) => {
      
@@ -20,23 +21,48 @@ export default (props) => {
         
     }
 
+    const setDefaults = () => {
+      if (editMode) {
+          const messageBoardId = parseInt(props.match.params.messageBoardId)
+          const selectedMessage= messages.find(m => m.id === messageBoardId) || {}
+          setMessage(selectedMessage)
+
+      }
+  }
+
+  useEffect(() => {
+      setDefaults()
+  }, [messages])
     
     const constructNewMessage= () => {
          
-            addMessage({
-                text: message.text,              
-                date: message.date,
-                messageTypeId: message.messageTypeId,
-                userId: parseInt(localStorage.getItem("digi_student"), 10)
-            })
+       if (editMode) {
+        updateMessage({
+          id:message.id, 
+          text: message.text,              
+          date: message.date,
+          messageTypeId: message.type,
+          userId: parseInt(localStorage.getItem("digi_student"), 10)
+      })
+
+       }else {
+
+          addMessage({
+              text: message.text,              
+              date: message.date,
+              messageTypeId: message.type,
+              userId: parseInt(localStorage.getItem("digi_student"), 10)
+          })
+
+
+       }
             
-        
         }
     
 
     return (
         <form className="messageForm">
-            <h2 className="messageForm__title">Create A Message</h2>
+            <h2 className="messageForm__title">{editMode ? "Edit Message" : "Create a Message"}</h2>
             <fieldset>
             <div className="form-group">
                 <label htmlFor="text">Message</label>
@@ -90,7 +116,7 @@ export default (props) => {
                     {evt.preventDefault() 
                     constructNewMessage()
                     }}
-                className="btn btn-primary"> Add Message</button>
+                className="btn btn-primary">{editMode ? "Edit Message" : "Add a Message"}</button>
         </form>
     )
 }

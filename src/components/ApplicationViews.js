@@ -13,6 +13,7 @@ import AbsentRequestTeacherList from "./absentRequests/AbsentRequestTeacherList"
 import MessageForm from "./messages/MessageForm";
 import { MessageContext } from "./messages/MessageProvider";
 import { MessageTypeContext } from "./messages/MessageTypeProvider";
+import MessageList from "./messages/MessageList";
 
 
 
@@ -88,9 +89,20 @@ if(activeUser.prefixId === 4){
                   <Route exact path ="/" render = { props =>
                   <AbsentRequestTeacherList {...props}/>}
                   />
-                   <Route exact path="/messageBoard" render={ props =>
+                   <Route path="/messageBoard" render={ props =>
                   <MessageForm {...props}/>}
                   />
+                   <Route path="/messageBoard" render={ props =>
+                  <MessageList {...props}/>}
+                  />
+
+                 <Route exact path="/:messageBoardId(\d+)" render={props =>
+                  <MessageForm {...props}/>}
+                  />  
+
+                <Route exact path="/:messageBoardId(\d+)" render={props =>
+                  <MessageList {...props}/>}
+                  />  
              
   
               </ProviderProvider>

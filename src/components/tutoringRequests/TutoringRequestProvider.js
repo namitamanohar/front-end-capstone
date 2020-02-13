@@ -13,6 +13,7 @@ export const TutoringRequestContext = React.createContext()
  */
 export const TutoringRequestProvider = (props) => {
     const [tutoringRequests, setTutoringRequests] = useState([])
+    // tutoring Requests is a state variable and setTutoringRequests sets the state variable 
 
     const getTutoringRequests = () => {
         return fetch("http://localhost:8088/tutoringRequests?_expand=user")

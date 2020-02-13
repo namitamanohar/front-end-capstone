@@ -148,7 +148,6 @@ export default (props) => {
                     />
             </div>
             </fieldset>
-
             <fieldset>
             <div className="form-group">
                 <label htmlFor="date">Date</label>
