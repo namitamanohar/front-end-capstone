@@ -172,8 +172,7 @@ export default (props) => {
         </fieldset>
             <button type="submit" onClick={evt => 
                     {evt.preventDefault()
-                    
-                    constructNewTutoringRequest()
+                     constructNewTutoringRequest()
                     setTutoringRequest({
                         "title":"", 
                         "userId":"", 

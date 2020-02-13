@@ -6,7 +6,12 @@ import { MessageContext } from "./MessageProvider"
 export default (props) => {
 
     const { messages, addMessage, updateMessage} = useContext(MessageContext)
-    const [message, setMessage] = useState({})
+    const [message, setMessage] = useState({
+      "text":"", 
+      "messageTypeId":"", 
+      "date":"", 
+      "userId":""
+  })
     
     const { messageTypes } = useContext(MessageTypeContext)
 
@@ -25,6 +30,7 @@ export default (props) => {
       if (editMode) {
           const messageBoardId = parseInt(props.match.params.messageBoardId)
           const selectedMessage= messages.find(m => m.id === messageBoardId) || {}
+          console.log(selectedMessage)
           setMessage(selectedMessage)
 
       }
@@ -41,20 +47,20 @@ export default (props) => {
           id:message.id, 
           text: message.text,              
           date: message.date,
-          messageTypeId: message.type,
+          messageTypeId: parseInt(message.messageTypeId),
           userId: parseInt(localStorage.getItem("digi_student"), 10)
       })
-
+      .then(() => props.history.push("/messageBoard"))
        }else {
 
           addMessage({
               text: message.text,              
               date: message.date,
-              messageTypeId: message.type,
+              messageTypeId: parseInt(message.messageTypeId),
               userId: parseInt(localStorage.getItem("digi_student"), 10)
           })
-
-
+          .then(() => props.history.push("/messageBoard"))  
+          
        }
             
         }
@@ -68,7 +74,6 @@ export default (props) => {
                 <label htmlFor="text">Message</label>
                 <input
                     type="text"
-                    id="text"
                     name="text"
                     value={message.text}
                     required
@@ -84,8 +89,8 @@ export default (props) => {
             <div className="form-group">
                 <label htmlFor="messageType">Pick the Message Type</label>
                 <select
-                    name="type"
-                    value={message.type}
+                    name="messageTypeId"
+                    value={message.messageTypeId}
                     className="form-control"
                     onChange={handleControlledInputChange}
                 >
@@ -115,6 +120,12 @@ export default (props) => {
             <button type="submit" onClick={evt => 
                     {evt.preventDefault() 
                     constructNewMessage()
+                    setMessage({
+                      "text":"", 
+                      "messageTypeId":"", 
+                      "date":"", 
+                      "userId":""
+                  })
                     }}
                 className="btn btn-primary">{editMode ? "Edit Message" : "Add a Message"}</button>
         </form>

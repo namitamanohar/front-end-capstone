@@ -14,6 +14,7 @@ import MessageForm from "./messages/MessageForm";
 import { MessageContext } from "./messages/MessageProvider";
 import { MessageTypeContext } from "./messages/MessageTypeProvider";
 import MessageList from "./messages/MessageList";
+import TutoringRequestAsideList from "./tutoringRequests/TutoringRequestAsideList";
 
 
 
@@ -82,10 +83,15 @@ if(activeUser.prefixId === 4){
     <>
           
               <ProviderProvider>
+                  <div className="tutoringAndAside">
 
                   <Route exact path ="/" render = { props =>
                   <TutoringRequestTeacherList {...props}/>}
                   />
+                  <Route exact path ="/" render = { props =>
+                  <TutoringRequestAsideList {...props}/>}
+                  />
+                  </div>
                   <Route exact path ="/" render = { props =>
                   <AbsentRequestTeacherList {...props}/>}
                   />

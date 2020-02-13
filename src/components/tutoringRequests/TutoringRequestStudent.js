@@ -23,8 +23,8 @@ export default ({prefix, subject, tutoringRequest, history}) => {
       
     return (
       <div>
-        <Card>
-          <CardBody className="tutoringRequestPending">
+        <Card className="tutoringRequestPending">
+          <CardBody >
             <CardTitle className="tutoringRequest__title">Reason: {tutoringRequest.title}</CardTitle>
             <CardText className="tutoringRequest__teacer">{prefix.name}.{tutoringRequest.user.lastName} </CardText >
             <CardText className="tutoringRequest__subject">Subject {subject.name}</CardText>
@@ -51,23 +51,13 @@ export default ({prefix, subject, tutoringRequest, history}) => {
   }else if(tutoringRequest.approved === true && timeStamp === true) {
     return (
       ""
-    //   <div>
-    //   <Card>
-    //     <CardBody className="tutoringRequestAccepted">
-    //       <CardTitle className="tutoringRequest__title">Reason: {tutoringRequest.title}</CardTitle>
-    //       <CardText className="tutoringRequest__teacer">{prefix.name}.{tutoringRequest.user.lastName} </CardText >
-    //       <CardText className="tutoringRequest__subject">Subject {subject.name}</CardText>
-    //       <CardText className="tutoringRequest__date">Date: {moment(tutoringRequest.date).format("MM/DD/YYYY")}</CardText>
-    //       <CardText className="tutoringRequest__time">Tutoring Time: {moment(tutoringRequest.startTime,'HH:mm').format('hh:mm a') }--{moment(tutoringRequest.endTime,'HH:mm').format('hh:mm a') }</CardText>  
-    //     </CardBody>
-    //   </Card>
-    // </div>
+    
     )
 
   }else if(tutoringRequest.approved === false && timeStamp === true) {
     return (
-  <Card>
-        <CardBody className="tutoringRequestDeclined">
+  <Card className="tutoringRequestDeclined">
+        <CardBody >
           <CardTitle className="tutoringRequest__title">Reason: {tutoringRequest.title}</CardTitle>
           <CardText className="tutoringRequest__teacer">{prefix.name}.{tutoringRequest.user.lastName} </CardText >
           <CardText className="tutoringRequest__subject">Subject {subject.name}</CardText>

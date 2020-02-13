@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-
+import moment from "moment"
 import "./Messages.css"
 import { MessageContext } from "./MessageProvider"
 import Message from "./Message"
@@ -15,11 +15,11 @@ export default (props) => {
    ) || {} 
 
    
-   
+   const sortedActiveTeacherMessages = activeTeacherMessages.sort((a, b) => moment(a.date).valueOf() -moment(b.date).valueOf())
 
   return (
 
-    <div className="Messages">
+    <div className="messages">
       {
         activeTeacherMessages.map(m =>
            <Message key={m.id} message={m} {...props}

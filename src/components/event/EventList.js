@@ -51,9 +51,16 @@ export default (props) => {
        eventsAndTutoringRequests.push(a)
    }) || {}
 
+
    console.log("eventsAndTutoringRequests",eventsAndTutoringRequests)
 
-   const sortedEventsAndTutoringRequests = eventsAndTutoringRequests.sort((a, b) => moment(a.date).valueOf() -moment(b.date).valueOf())
+   const CurrentEventsAndTutoringRequests = eventsAndTutoringRequests.filter( e => {
+       if(moment(e.date).valueOf() > Date.now()){
+           return e 
+       }
+   }) || {}
+
+   const sortedEventsAndTutoringRequests = CurrentEventsAndTutoringRequests.sort((a, b) => moment(a.date).valueOf() -moment(b.date).valueOf())
     return (
         <>
          
@@ -61,7 +68,7 @@ export default (props) => {
                 <div className="events">
 
                     {
-                        eventsAndTutoringRequests.map(e => {
+                        CurrentEventsAndTutoringRequests.map(e => {
                             return <Event key={`${e.id}_${e.date}`} event={e} className={className} {...props} setModal={setModal} modal={modal}/>
                         })
                     }

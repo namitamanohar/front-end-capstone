@@ -20,22 +20,15 @@ export default () => {
     t => {return t.userId === parseInt(localStorage.getItem("digi_student")) }
     ) || {} 
     
+    const CurrentTutoringRequests = activeTeacherTutoringRequests.filter( e => {
+      if(moment(e.date).valueOf() > Date.now()){
+          return e 
+      }
+  }) || {}
+
+ 
     
-  //   const studentName =[]
-   
-   
-  //  const studentNameArray = activeTeacherTutoringRequests.map(a => {
-  //    return users.filter(u => {
-  //      return u.id === a.activeUserId
-  //     })
-  //   }) || {}
-    
-  //   const studentNames=studentNameArray.map(s => {return s.map(a=>{
-  //     return studentName.push(a)
-  //   })}) || {}
-  //   console.log("studentName PLEASE", studentName)
-    
-    const sortedTutoringRequests = activeTeacherTutoringRequests.sort((a, b) => moment(a.date).valueOf() -moment(b.date).valueOf())
+    const sortedTutoringRequests = CurrentTutoringRequests.sort((a, b) => moment(a.date).valueOf() -moment(b.date).valueOf())
 
 
 
@@ -46,7 +39,7 @@ export default () => {
             <h3>Tutoring Requests</h3>
           <div className="tutoringRequests">
             {
-              activeTeacherTutoringRequests.map(a =>
+              CurrentTutoringRequests.map(a =>
                   <TutoringRequestTeacher key={a.id} tutoringRequest={a}
                   />
                   
