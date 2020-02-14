@@ -79,7 +79,7 @@ export default (props) => {
                 <Link className="navbar__link" to="/">Home</Link>
       </li>
       <li className="navbar__item">
-        <Link className="navbar__link" to="/message">Message Board</Link>
+        <Link className="navbar__link" to="/messageBoard">Message Board</Link>
       </li>
     
       {

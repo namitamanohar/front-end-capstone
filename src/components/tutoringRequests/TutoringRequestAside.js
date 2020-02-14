@@ -23,54 +23,22 @@ export default ({ tutoringRequest }) => {
   })
 
   
- console.log("student Name on teacher page", studentName)
-  const acceptedTutoringRequest = () => {
-      updateTutoringRequest({
-        id:tutoringRequest.id, 
-        timestamp: Date.now(), 
-        approved:true 
-      })
-
-    
-      
-  }
-
-  const declinedTutoringRequest = () => {
-    updateTutoringRequest({
-      id:tutoringRequest.id, 
-      timestamp: Date.now(), 
-      approved:false,  
-    })
-  }
 
   if(tutoringRequest.approved === false && timestamp === false   ){
      
     
     return (
-      <section className="tutoringRequestPending">
+      ""
+    )
+
+  }else if(tutoringRequest.approved === true && timestamp === true ) {
+    return (
+      <section className="tutoringRequestAcceptedCards">
         <h4 className="tutoringRequest__reason">{tutoringRequest.title}</h4>
         <p className="tutoringRequest__student">Student Name: {studentName.map(s => {return s.firstName})} {studentName.map(s => {return s.lastName})}</p>
         <p className="tutoringRequest__date">Date: {moment(tutoringRequest.date).format("MM/DD/YYYY")}</p>    
-        <p className="tutoringRequest__time">Tutoring Time: {moment(tutoringRequest.startTime,'HH:mm').format('hh:mm a') }--{moment(tutoringRequest.endTime,'HH:mm').format('hh:mm a') }</p> 
-        <button className="acceptTutoringRequest"
-        onClick = {
-          () => {
-            acceptedTutoringRequest()
-          }
-        }>Accept</button>     
-        <button className="declineTutoringRequest"
-        onClick ={
-          () => {
-            declinedTutoringRequest()
-          }
-        }>Decline</button>     
-
+        <p className="tutoringRequest__time">Tutoring Time: {moment(tutoringRequest.startTime,'HH:mm').format('hh:mm a') }--{moment(tutoringRequest.endTime,'HH:mm').format('hh:mm a') }</p>        
       </section>
-    )
-
-  }else if(tutoringRequest.approved === true && timestamp ===true ) {
-    return (
-     ""
     )
 
   }else if (tutoringRequest.approved === false && timestamp === true ){

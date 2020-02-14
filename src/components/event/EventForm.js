@@ -148,7 +148,6 @@ export default (props) => {
                     />
             </div>
             </fieldset>
-
             <fieldset>
             <div className="form-group">
                 <label htmlFor="date">Date</label>
@@ -177,18 +176,3 @@ export default (props) => {
 
 
 
-// {props.editMode
-//     ? <select
-   
-//     name="eventTypeId"
-//     defaultValue={props.eventObject.eventType.name}
-//     className="form-control"
-//     onChange={handleControlledInputChange}
-// >
-//     <option value="0">Select the type of Event</option>
-//     {eventTypes.map(e => (
-//         <option key={e.id} value={e.id}>
-//             {e.name}
-//         </option>
-//     ))}
-// </select> :

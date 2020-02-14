@@ -1,17 +1,17 @@
 
-import React from "react"
-import { Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import React, { useState } from "react"
+import { Card, CardTitle, CardText, Row, Col } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import TeacherDetailsList from "./TeacherDetailsList";
+
+export default ({teacher, className}) => {
 
 
-export default ({teacher}) => {
+  const [modal, setModal] = useState(false);
+
+  const toggle = () => setModal(!modal);
 
   return(
-    // <section className="teacher">
-    //     <h4 className="teacher__name"></h4>
-    //     <p className="teacher__subject"></p>
-
-    // </section>
-
 
 
 <Row>
@@ -19,9 +19,17 @@ export default ({teacher}) => {
         <Card className="teachers" body>
           <CardTitle>{teacher.prefix.name}.{teacher.lastName}</CardTitle>
           <CardText>{teacher.subject.name}</CardText>
-          <Button>See More</Button>
+          <Button  color="secondary" onClick={toggle}>See More </Button>
+          <Modal isOpen={modal} toggle={toggle} className={className}>
+          <ModalHeader toggle={toggle}>{teacher.prefix.name}.{teacher.lastName}'s Announcements</ModalHeader>
+                        <ModalBody>
+                          <TeacherDetailsList teacher={ teacher } />
+                        </ModalBody>
+                      <ModalFooter>
+                    </ModalFooter>
+                  </Modal> 
         </Card>
-      {/* </Col> */}
+     
     </Row>
 )
 

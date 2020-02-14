@@ -10,12 +10,16 @@ import TutoringRequestTeacherList from "./tutoringRequests/TutoringRequestTeache
 import AbsentRequestForm from "./absentRequests/AbsentRequestForm";
 import AbsentRequestStudentList from "./absentRequests/AbsentRequestStudentList";
 import AbsentRequestTeacherList from "./absentRequests/AbsentRequestTeacherList";
+import MessageForm from "./messages/MessageForm";
+import { MessageContext } from "./messages/MessageProvider";
+import { MessageTypeContext } from "./messages/MessageTypeProvider";
+import MessageList from "./messages/MessageList";
+import TutoringRequestAsideList from "./tutoringRequests/TutoringRequestAsideList";
 
 
 
 export default props =>{
 
- 
 
 
 const { users } = useContext(UserContext)
@@ -74,21 +78,43 @@ if(activeUser.prefixId === 4){
       
         </>
       )
-}else
-return (
-  <>
+}else{
+  return (
+    <>
+          
+              <ProviderProvider>
+                  <div className="tutoringAndAside">
+
+                  <Route exact path ="/" render = { props =>
+                  <TutoringRequestTeacherList {...props}/>}
+                  />
+                  <Route exact path ="/" render = { props =>
+                  <TutoringRequestAsideList {...props}/>}
+                  />
+                  </div>
+                  <Route exact path ="/" render = { props =>
+                  <AbsentRequestTeacherList {...props}/>}
+                  />
+                   <Route path="/messageBoard" render={ props =>
+                  <MessageForm {...props}/>}
+                  />
+                   <Route path="/messageBoard" render={ props =>
+                  <MessageList {...props}/>}
+                  />
+
+                 <Route exact path="/:messageBoardId(\d+)" render={props =>
+                  <MessageForm {...props}/>}
+                  />  
+
+                <Route exact path="/:messageBoardId(\d+)" render={props =>
+                  <MessageList {...props}/>}
+                  />  
+             
+  
+              </ProviderProvider>
         
-            <ProviderProvider>
+          </>     
+  )
 
-                <Route exact path ="/" render = { props =>
-                <TutoringRequestTeacherList {...props}/>}
-                />
-                <Route exact path ="/" render = { props =>
-                <AbsentRequestTeacherList {...props}/>}
-                />
-
-            </ProviderProvider>
-      
-        </>     
-)
+}
 }

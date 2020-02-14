@@ -4,14 +4,14 @@ import Teacher from "./Teacher"
 // import "./Candy.css"
 
 
-export default () => {
+export default (props) => {
   const { users } = useContext(UserContext)
 
     const teachers = users.filter(u => {
       if(u.prefixId != 4){
         return u 
       }
-    })
+    }) || {}
 
     console.log(teachers)
   
@@ -21,7 +21,7 @@ export default () => {
 
         <div className="teachers">
           {
-            teachers.map(t => <Teacher key={t.id} teacher={t}/>)
+            teachers.map(t => <Teacher key={t.id} teacher={t} />)
           }
 
         </div>

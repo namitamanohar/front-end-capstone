@@ -19,14 +19,21 @@ export default (props) => {
    console.log("SOS", parseInt(localStorage.getItem("digi_student")))
    console.log("activer tutor requests STUDENT", activeTutoringRequests)
 
-   activeTutoringRequests.sort((a, b) => moment(a.date).valueOf() -moment(b.date).valueOf())
+   
+   const CurrentTutoringRequests = tutoringRequests.filter( e => {
+    if(moment(e.date).valueOf() > Date.now()){
+        return e 
+    }
+}) || {}
+   
+   CurrentTutoringRequests.sort((a, b) => moment(a.date).valueOf() -moment(b.date).valueOf())
    
 
   return (
 
     <div className="tutoringRequests">
       {
-        activeTutoringRequests.map(a =>
+        CurrentTutoringRequests.map(a =>
            <TutoringRequestStudent key={a.id} tutoringRequest={a}
             prefix ={prefixes.find( p => {
             return p.id === a.user.prefixId
