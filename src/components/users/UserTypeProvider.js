@@ -13,7 +13,7 @@ export const UserTypeProvider = (props) => {
 
     
     /*
-        Load all animals when the component is mounted. Ensure that
+        Load all UserTypes when the component is mounted. Ensure that
         an empty array is the second argument to avoid infinite loop.
     */
     useEffect(() => {
@@ -21,7 +21,7 @@ export const UserTypeProvider = (props) => {
     }, [])
 
     useEffect(() => {
-        console.log("****  UserType APPLICATION STATE CHANGED  ****")
+        console.log("****  UserTypes APPLICATION STATE CHANGED  ****")
     }, [userTypes])
 
     return (

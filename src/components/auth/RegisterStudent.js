@@ -8,8 +8,8 @@ const RegisterStudent = props => {
     const username = useRef()
     const password = useRef()
     const verifyPassword = useRef()
-    const subject = 0 
-    const prefix = 0 
+    const subject = 8 
+    const prefix = 4 
     const userType=useRef(0)
 
     const { userTypes } = useContext(UserTypeContext)
@@ -121,7 +121,7 @@ const RegisterStudent = props => {
                 </fieldset>
                 <fieldset>
                     <button type="submit">
-                        Sign in
+                        Create Account
                     </button>
                 </fieldset>
             </form>

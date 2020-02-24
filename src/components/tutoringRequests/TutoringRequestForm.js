@@ -1,11 +1,12 @@
 import React, { useContext, useState, useEffect } from "react"
 import { TutoringRequestContext } from "./TutoringRequestProvider"
 import "./TutoringRequests.css"
-
 import { UserContext } from "../users/UserProvider"
 
+// STUDENT VIEW 
 export default (props) => {
     const { addTutoringRequest, editTutoringRequest, tutoringRequests } = useContext(TutoringRequestContext)
+    // useState is used to make the form a controlled component and have the form date stored in the local state variable tutoringRequest
     const [tutoringRequest, setTutoringRequest] = useState({
         "title":"", 
         "userId":"", 
@@ -13,12 +14,13 @@ export default (props) => {
         "endTime":"",
         "date":""
     })
+
     
+// editMode returns either true or false
     const editMode = props.match.params.hasOwnProperty("tutoringRequestId")
 
-    console.log("editMode True or false", editMode)
+// filter the users to return the teachers for the dropdown
     const { users } = useContext(UserContext)
-
     const teacherArray = users.filter(u => {
       if( u.prefixId != 4 ){
         return u 
@@ -26,22 +28,21 @@ export default (props) => {
     }) || {}
 
     
- 
+//  onchange is triggered by any change in form and sets the state of tutoringRequest to the name attribute of the input as an object 
     const handleControlledInputChange = (evt) => {
      
         const newTutoringRequest = Object.assign({}, tutoringRequest)
         newTutoringRequest[evt.target.name] = evt.target.value
         setTutoringRequest(newTutoringRequest)
-        console.log("tutoring Request to see id", newTutoringRequest)
     }
 
-
+// setDefaults runs and if it is in editMode then it will find the tutoring request corresponding the the match.params integer
     const setDefaults = () => {
         if (editMode) {
             const tutoringRequestId = parseInt(props.match.params.tutoringRequestId)
             const selectedTutoringRequest = tutoringRequests.find(t => t.id === tutoringRequestId) || {}
             setTutoringRequest(selectedTutoringRequest)
-            console.log("tutoringRequest", tutoringRequest) 
+            console.log("tutoringRequest to know useEffect", selectedTutoringRequest) 
 
         }
     }
@@ -52,6 +53,7 @@ export default (props) => {
 
     const constructNewTutoringRequest = () => {
 
+// if in editMode it will editTutoringRequest using the PUT method
         if (editMode){
             editTutoringRequest({
                 id:tutoringRequest.id,
@@ -64,8 +66,8 @@ export default (props) => {
                 activeUserId: parseInt(localStorage.getItem("digi_student"), 10)
             })
             .then(() => props.history.push("/"))
+// else it will addTutoringRequest using the POST method
         } else {
-
             addTutoringRequest({
                 title: tutoringRequest.title,
                 startTime: tutoringRequest.startTime,
@@ -80,7 +82,7 @@ export default (props) => {
         
         }
     
-
+// JSX code that displays the form if in editMode the h2 and submit button will be different
 
     return (
         <form className="TutoringRequestForm">

@@ -1,8 +1,9 @@
-
+// student view 
 import React, { useState } from "react"
 import { Card, CardTitle, CardText, Row, Col } from 'reactstrap';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import TeacherDetailsList from "./TeacherDetailsList";
+import "./Teachers.css"
 
 export default ({teacher, className}) => {
 
@@ -12,12 +13,14 @@ export default ({teacher, className}) => {
   const toggle = () => setModal(!modal);
 
   return(
-
+// display teacher as a card with a See More button that onlick shows the TeacherDetailList compoment as the modalBody and sends the teacher object to that compoenent
 
 <Row>
-      {/* <Col> */}
         <Card className="teachers" body>
-          <CardTitle>{teacher.prefix.name}.{teacher.lastName}</CardTitle>
+          <CardTitle className="teacherAndLogo">
+          <img className="appleLogo" src={require ("../images/apple.svg")}/> 
+            <div className="teacherName">{teacher.prefix.name}.{teacher.lastName}</div>
+          </CardTitle>
           <CardText>{teacher.subject.name}</CardText>
           <Button  color="secondary" onClick={toggle}>See More </Button>
           <Modal isOpen={modal} toggle={toggle} className={className}>

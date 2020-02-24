@@ -15,21 +15,25 @@ export default (props) => {
 
     const { tutoringRequests } = useContext(TutoringRequestContext)
 
-    
-    const eventsAndTutoringRequests = []
-    
-    const activeTutoringRequests = tutoringRequests.filter(
-        t => {return t.activeUserId = parseInt(localStorage.getItem("digi_student"),10) }
-        ) || {} 
-        console.log("active tutoring requests", activeTutoringRequests)
+    // empty array to store eventx and approved tutoring Requests
 
-     const tutoringRequestAccepted= activeTutoringRequests.filter(a => {
+    const eventsAndTutoringRequests = []
+
+    // filter out all the tutoringRequests that correspon with the active User logged in 
+
+    const activeTutoringRequests = tutoringRequests.filter(
+        t => {return t.activeUserId === parseInt(localStorage.getItem("digi_student"),10) }
+        ) || {} 
+
+
+// map through the  activeTutoringRequest array push the activeTutoringRquest object that has the approved property true and timestamp true into the eventsAndTutoringRequests array 
+
+     const tutoringRequestAccepted= activeTutoringRequests.map(a => {
            if (a.approved === true && a.hasOwnProperty('timestamp') === true){
            return eventsAndTutoringRequests.push(a) 
         }
       }) || {}
 
-      console.log("tutoringRequestsAccepted", tutoringRequestAccepted)
   
     const {
         buttonLabel,
@@ -40,30 +44,32 @@ export default (props) => {
 
       const toggle = () => setModal(!modal);
    
-
+// filter the events for the user logged in 
    const activeUserEvents = events.filter(e => 
     {return e.userId === parseInt(localStorage.getItem("digi_student"),10)
    }) || {}
 
-//    const sortedEvents = activeUserEvents.sort((a, b) => moment(a.date).valueOf() -moment(b.date).valueOf())
-
-  const eventsActive= activeUserEvents.map(a =>{
+// map through and push the activeuser in the eventsAndTutoringRequests array 
+  const eventsActive = activeUserEvents.map(a => {
        eventsAndTutoringRequests.push(a)
    }) || {}
 
 
-   console.log("eventsAndTutoringRequests",eventsAndTutoringRequests)
-
+// filter out today's date and upcoming 
    const CurrentEventsAndTutoringRequests = eventsAndTutoringRequests.filter( e => {
-       if(moment(e.date).valueOf() > Date.now()){
+       if(moment(e.date).valueOf() + 86400000 > Date.now()){
            return e 
        }
    }) || {}
 
+//sort by date 
+
    const sortedEventsAndTutoringRequests = CurrentEventsAndTutoringRequests.sort((a, b) => moment(a.date).valueOf() -moment(b.date).valueOf())
     return (
+        // maps CurrentEventsAndTutoringRequest and pushes the individiual object to the Event component 
+        //  AddEvent Icon button that onClick opens the ModalBody that contains the EventForm component
         <>
-         
+    
             <div className="events-Button">
                 <div className="events">
 

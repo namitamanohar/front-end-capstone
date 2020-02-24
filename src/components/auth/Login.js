@@ -66,8 +66,12 @@ const Login = props => {
                 </form>
             </section>
             <section className="link--register">
-                <Link to="/registerStudent">Student Registration</Link>
-                <Link to="/registerTeacher">Teacher Registration</Link>
+                <div>
+                    <Link to="/registerStudent">Student Registration</Link>
+                </div>
+                <div>
+                     <Link to="/registerTeacher">Teacher Registration</Link>
+                </div>
             </section>
         </main>
     )

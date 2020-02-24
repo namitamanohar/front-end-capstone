@@ -19,8 +19,6 @@ import {
 } from 'reactstrap';
 
 
-
-
 export default (props) => {
 
   const [collapsed, setCollapsed] = useState(true);
@@ -28,19 +26,21 @@ export default (props) => {
   const toggleNavbar = () => setCollapsed(!collapsed);
 
   const { users } = useContext(UserContext)
-  console.log("ALL THE USERS",users)
 
+// returns the object that corresponds with the user logged in 
   const singleUserObject = users.find(u => 
     {return u.id === parseInt(localStorage.getItem("digi_student"),10)}
   
     ) || {}
     
   if (singleUserObject.prefixId === 4){
-
+// for the student user displays the navBar with Home and Absent Requests 
      return (
 
   <ul className="navBar">
-      <NavbarBrand className="mr-auto">StudentView</NavbarBrand>
+      <NavbarBrand className="mr-auto">DigiPlan
+          <img className="studentLogo" src={require ("../images/students.svg")}/> 
+      </NavbarBrand>
       <li className="navbar__item active">
                 <Link className="navbar__link" to="/">Home</Link>
       </li>
@@ -69,11 +69,14 @@ export default (props) => {
 
   )
 
-
 } else{
+
+  // for the teacher shows the Home and Message Board tabs
   return (
     <ul className="navBar">
-      <NavbarBrand className="mr-auto">TeacherView</NavbarBrand>
+      <NavbarBrand className="mr-auto">DigiPlan
+          <img className="teacherLogo" src={require ("../images/apple.svg")}/> 
+      </NavbarBrand>
 
       <li className="navbar__item active">
                 <Link className="navbar__link" to="/">Home</Link>
@@ -105,31 +108,3 @@ export default (props) => {
 }
 
 
-
- // <ul className="navBar">
-    //   <NavbarBrand className="mr-auto">StudentView</NavbarBrand>
-    //   <li className="navbar__item active">
-    //             <Link className="navbar__link" to="/">Home</Link>
-    //   </li>
-  
-      
-    //   <li className="navbar__item">
-    //     <Link className="navbar__link" to="/absentRequests">Absent Request</Link>
-    //   </li>
-    
-    //   {
-    // localStorage.getItem("digi_student")
-    //     ? <li className="navbar__item">
-    //         <Link className="navbar__link"
-    //             to=""
-    //             onClick={e => {
-    //                 e.preventDefault()
-    //                 localStorage.removeItem("digi_student")
-    //                 props.history.push("/")
-    //             }}
-    //         >Logout</Link>
-    //     </li>
-    //     : ""
-    //     }
-    
-    // </ul>
