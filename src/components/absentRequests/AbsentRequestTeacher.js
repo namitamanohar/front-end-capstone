@@ -78,7 +78,7 @@ const addAbsentWorkImage = () => {
                 } 
                 <div>
                   
-                  <Button type="submit" onClick={evt => 
+                  <Button type="submit" color="primary" onClick={evt => 
                               {evt.preventDefault() 
             // onClick the Send Work runs addAbsentWorkImage which patches the object and adds the image 
                               addAbsentWorkImage()

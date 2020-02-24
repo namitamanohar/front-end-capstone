@@ -18,20 +18,20 @@ export default  ({message, history }) => {
         <CardTitle className="message__typeId">{message.messageType.name}</CardTitle>
         <CardText className="message__text"> {message.text}</CardText>
         <CardText className="message__date">{moment(message.date).format("MM/DD/YYYY")}</CardText >
-      </CardBody>
-      <Button onClick={
+      <Button color="info" onClick={
         () => {
           {
             history.push(`/${message.id}`)
           }
         }
       }>Edit</Button>
-      <Button onClick= {
+      <Button color="secondary" onClick= {
         // onclick uses the DELETE method to delete the object corresponding with the message id 
         () => {
           deleteMessage(message.id)
         }
       }>Delete</Button>
+      </CardBody>
     </Card>
   </div>
   )

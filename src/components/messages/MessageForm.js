@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react"
 import "./Messages.css"
 import { MessageTypeContext } from "./MessageTypeProvider"
 import { MessageContext } from "./MessageProvider"
+import { Button } from "reactstrap"
 
 export default (props) => {
 
@@ -120,7 +121,7 @@ export default (props) => {
                     />
             </div>
         </fieldset>
-            <button type="submit" onClick={evt => 
+            <Button color="info" type="submit" onClick={evt => 
                     {evt.preventDefault() 
                     constructNewMessage()
                     setMessage({
@@ -130,7 +131,7 @@ export default (props) => {
                       "userId":""
                   })
                     }}
-                className="btn btn-primary">{editMode ? "Edit Message" : "Add a Message"}</button>
+                className="btn btn-primary">{editMode ? "Edit Message" : "Add a Message"}</Button>
         </form>
     )
 }

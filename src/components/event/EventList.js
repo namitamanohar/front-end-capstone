@@ -86,7 +86,7 @@ export default (props) => {
                     />                   
                 </div>
                 <Modal isOpen={modal} toggle={toggle} className={className}>
-                    <ModalHeader toggle={toggle}>Events </ModalHeader>
+                    <ModalHeader toggle={toggle}>Time to Plan! </ModalHeader>
 
                     <ModalBody>
                         <EventForm setModal={setModal} {...props} />

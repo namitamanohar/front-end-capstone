@@ -29,8 +29,8 @@ export default ({prefix, subject, tutoringRequest, history}) => {
         <Card className="tutoringRequestPending">
           <CardBody >
             <CardTitle className="tutoringRequest__title">Reason: {tutoringRequest.title}</CardTitle>
-            <CardText className="tutoringRequest__teacer">{prefix.name}.{tutoringRequest.user.lastName} </CardText >
-            <CardText className="tutoringRequest__subject">Subject {subject.name}</CardText>
+            <CardText className="tutoringRequest__teacer">Teacher: {prefix.name}.{tutoringRequest.user.lastName} </CardText >
+            <CardText className="tutoringRequest__subject">Subject: {subject.name}</CardText>
             <CardText className="tutoringRequest__date">Date: {moment(tutoringRequest.date).format("MM/DD/YYYY")}</CardText>
             <CardText className="tutoringRequest__time">Tutoring Time: {moment(tutoringRequest.startTime,'HH:mm').format('hh:mm a') }--{moment(tutoringRequest.endTime,'HH:mm').format('hh:mm a') }</CardText>  
             <Button color="secondary"  

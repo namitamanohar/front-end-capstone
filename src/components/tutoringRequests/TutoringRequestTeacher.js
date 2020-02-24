@@ -55,13 +55,13 @@ export default ({ tutoringRequest }) => {
             <CardText className="tutoringRequest__student">Student Name: {studentName.map(s => {return s.firstName})} {studentName.map(s => {return s.lastName})}</CardText>
             <CardText className="tutoringRequest__date">Date: {moment(tutoringRequest.date).format("MM/DD/YYYY")}</CardText>    
             <CardText className="tutoringRequest__time">Tutoring Time: {moment(tutoringRequest.startTime,'HH:mm').format('hh:mm a') }--{moment(tutoringRequest.endTime,'HH:mm').format('hh:mm a') }</CardText> 
-            <Button className="acceptTutoringRequest"
+            <Button color="secondary" className="acceptTutoringRequest"
             onClick = {
               () => {
                 acceptedTutoringRequest()
               }
             }>Accept</Button>     
-            <Button className="declineTutoringRequest"
+            <Button color="primary" className="declineTutoringRequest"
             onClick ={
               () => {
                 declinedTutoringRequest()
