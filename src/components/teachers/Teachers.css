@@ -1,5 +1,4 @@
 .teachers {
- 
   flex-basis:20%; 
 }
 
@@ -8,7 +7,19 @@
     margin: 1em;
     padding: 1em;
     border: 1px solid  rgb(124, 29, 29);
+   
 }
 .teacher__subject{
   margin: auto; 
+}
+img{
+ margin-right: .5rem;
+}
+.teacherName{
+  padding-top:6px; 
+
+  
+}
+.teacherAndLogo{
+  display: flex;
 }

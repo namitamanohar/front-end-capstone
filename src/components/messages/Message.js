@@ -4,11 +4,13 @@ import { Button, Card, CardTitle, CardText, CardBody, Row, Col } from 'reactstra
 import { MessageContext } from "./MessageProvider";
 
 
+// TEACHER VIEW
 
 export default  ({message, history }) => {
 
-  const { deleteMessage, updateMessage } = useContext(MessageContext)
+  const { deleteMessage } = useContext(MessageContext)
 
+  // the Message card that displays the messageType, text, and date for the teacher view 
   return (
     <div>
     <Card className="message">
@@ -25,6 +27,7 @@ export default  ({message, history }) => {
         }
       }>Edit</Button>
       <Button onClick= {
+        // onclick uses the DELETE method to delete the object corresponding with the message id 
         () => {
           deleteMessage(message.id)
         }

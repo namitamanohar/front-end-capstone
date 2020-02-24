@@ -13,42 +13,39 @@ export default (props) => {
         "endTime":"",
         "date":""
     })
+
+// setEvent sets the event state variable to the object; making a event a controlled component 
+
     const { eventTypes } =useContext(EventTypeContext)
     
 
     const eventTypeNumber =parseInt(event.eventTypeId)
    
-
-  
+// onChange the input; the setEvent sets the event state variable the object containing the name attribute 
 
     const handleControlledInputChange = (evt) => {
-        /*
-            When changing a state object or array, always create a new one
-            and change state instead of modifying current one
-        */
         const newEvent = Object.assign({}, event)
         newEvent[evt.target.name] = evt.target.value
         console.log("newEvent",newEvent)
         setEvent(newEvent)
     }
-
+// if in editMode find the event to selected to be edited 
     const setDefaults = () => {
         if (props.editMode) {
             const eventId = parseInt(props.eventObject.id)
             const selectedEvent = events.find(e => e.id === eventId) || {}
-
-            setEvent(selectedEvent)
-
+         setEvent(selectedEvent)
         }
     }
 
+// mounts and updates when events changes 
     useEffect(() => {
         setDefaults()
-        console.log(event)
     }, [events])
 
     const constructNewEvent = () => {
         if (props.editMode) {
+        // use PUT method to edit the selected event 
             updateEvent({
                 id: event.id,
                 title: event.title,
@@ -61,6 +58,7 @@ export default (props) => {
             })
                
         } else {
+    // use the POST method to add the event 
             addEvent({
                 title: event.title,
                 startTime: event.startTime,
@@ -74,7 +72,7 @@ export default (props) => {
         }
     
 
-
+// JSX for the form; if in editMode change the h2 and submit button
     return (
         <form className="EventForm">
             <h2 className="EventForm__title">{props.editMode ? "Edit Event" : "Add Event"}</h2>

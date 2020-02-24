@@ -13,19 +13,21 @@ export default (props) => {
       "userId":""
   })
     
+// useState is used set the message state variable to make the message form a controlled component 
+
     const { messageTypes } = useContext(MessageTypeContext)
 
     const editMode = props.match.params.hasOwnProperty("messageBoardId")
 
-    
+    // onChange an input in the form the state variable message is set to the new object that corresponds to the name attribute 
+
     const handleControlledInputChange = (evt) => {
      
         const newMessage= Object.assign({}, message)
         newMessage[evt.target.name] = evt.target.value
         setMessage(newMessage)
-        
     }
-
+    // when setDefaults runs and is in editMode the message that was clicked on will be found 
     const setDefaults = () => {
       if (editMode) {
           const messageBoardId = parseInt(props.match.params.messageBoardId)
@@ -41,7 +43,7 @@ export default (props) => {
   }, [messages])
     
     const constructNewMessage= () => {
-         
+  // message will be updated using the PUT method
        if (editMode) {
         updateMessage({
           id:message.id, 
@@ -52,7 +54,7 @@ export default (props) => {
       })
       .then(() => props.history.push("/messageBoard"))
        }else {
-
+// message will be added using the POST method 
           addMessage({
               text: message.text,              
               date: message.date,
@@ -65,6 +67,7 @@ export default (props) => {
             
         }
     
+// JSX to display the message form on the message board for the teacher 
 
     return (
         <form className="messageForm">

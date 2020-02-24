@@ -11,6 +11,7 @@ export default () => {
   const { prefixes } = useContext(PrefixContext)
   const { subjects } = useContext(SubjectContext)
 
+  // filter the absentRequests by the active user logged in:student
    const activeAbsentRequests = absentRequests.filter(
      t => {return t.activeUserId = parseInt(localStorage.getItem("digi_student"),10) }
    ) || {} 
@@ -22,6 +23,7 @@ export default () => {
 
     <div className="AbsentRequests">
       {
+        // map through the activeAbsentRequests array and send the absent request object to the AbsentRequestStudent component 
         activeAbsentRequests.map(a =>
            <AbsentRequestStudent key={a.id} absentRequest={a}
             prefix ={prefixes.find( p => {

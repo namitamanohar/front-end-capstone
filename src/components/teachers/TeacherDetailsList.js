@@ -16,14 +16,21 @@ export default ({ teacher }) => {
 
   console.log(teacherMessages)
 
+  // sort messages by date 
    const sortedTeacherMessages= teacherMessages.sort((a, b) => moment(a.date).valueOf() -moment(b.date).valueOf())
+  // only shows messages from today and upcoming 
+   const currentTeacherMessages = teacherMessages.filter( e => {
+    if(moment(e.date).valueOf() + 86400000 > Date.now()){
+        return e 
+    }
+}) || {}
 
 
  return (
-
+  // maps through the messages and sends the message object to the Teacher Announcement component 
         <div className="teacherMessages">
         {
-          teacherMessages.map(m =>
+          currentTeacherMessages.map(m =>
             <TeacherAnnouncement key={m.id} teacherMessage={m} 
             />)
         }

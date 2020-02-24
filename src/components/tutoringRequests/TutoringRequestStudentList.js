@@ -12,25 +12,26 @@ export default (props) => {
   const { prefixes } = useContext(PrefixContext)
   const { subjects } = useContext(SubjectContext)
 
+
+// filter out the tutoringRequest that corresponds with the active user; the property activeUserId corresponds with the student
+
    const activeTutoringRequests = tutoringRequests.filter(
      t => {return t.activeUserId = parseInt(localStorage.getItem("digi_student"),10) }
    ) || {} 
 
-   console.log("SOS", parseInt(localStorage.getItem("digi_student")))
-   console.log("activer tutor requests STUDENT", activeTutoringRequests)
-
-   
+//  only shows tutoringRequest that are today or upcoming 
    const CurrentTutoringRequests = tutoringRequests.filter( e => {
     if(moment(e.date).valueOf() > Date.now()){
         return e 
     }
 }) || {}
    
+// sort the tutoringRequests by date 
    CurrentTutoringRequests.sort((a, b) => moment(a.date).valueOf() -moment(b.date).valueOf())
    
 
   return (
-
+    // map through the tutoringRequests and send the tutoringRequest object, prefix of teacher and subject of teacher using the expand method to the TutoringRequestStudent Component 
     <div className="tutoringRequests">
       {
         CurrentTutoringRequests.map(a =>

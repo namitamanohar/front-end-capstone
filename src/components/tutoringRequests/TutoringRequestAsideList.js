@@ -11,14 +11,20 @@ import TutoringRequestAside from "./TutoringRequestAside"
 export default () => {
   const { tutoringRequests } = useContext(TutoringRequestContext)
 
+// takes all tutoringRequests and filters by the active user--teacher to return the tutoringRequests corresponding to the teacher which is the property userId 
 
   const activeTeacherTutoringRequests = tutoringRequests.filter(
     t => {return t.userId === parseInt(localStorage.getItem("digi_student")) }
     ) || {} 
     
-   
-    
-    const sortedTutoringRequests = activeTeacherTutoringRequests.sort((a, b) => moment(a.date).valueOf() -moment(b.date).valueOf())
+    // only display tutoring requests that are upcoming or today
+    const TeacherTutoringRequests = activeTeacherTutoringRequests.filter( e => {
+      if(moment(e.date).valueOf() > Date.now()){
+          return e 
+      }
+  }) || {}
+  //  sort by date 
+    const sortedTutoringRequests = TeacherTutoringRequests.sort((a, b) => moment(a.date).valueOf() -moment(b.date).valueOf())
 
 
   return (
@@ -26,7 +32,8 @@ export default () => {
      
           <div className="tutoringRequestAside">
             {
-              activeTeacherTutoringRequests.map(a =>
+      // map thorugh the TeacherTutoringRequests and send to the Aside component 
+              TeacherTutoringRequests.map(a =>
                   <TutoringRequestAside key={a.id} tutoringRequest={a}
                   />
                   

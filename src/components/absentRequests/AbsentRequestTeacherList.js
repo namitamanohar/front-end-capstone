@@ -11,18 +11,17 @@ export default () => {
   const { absentRequests } = useContext(AbsentRequestContext)
 
   
-  
+// filter absentRequests by teacher which is the userId property to the teacher that is logged in 
   const activeTeacherAbsentRequests = absentRequests.filter(
     t => {return t.userId === parseInt(localStorage.getItem("digi_student")) }
     ) || {} 
     
-    
-
+    // sorts by date 
     const sortedAbsentRequests = activeTeacherAbsentRequests.sort((a, b) => moment(a.timestamp).valueOf() - moment(b.timestamp).valueOf())
 
 
 
-
+// JSX that that maps the activeTeacherAbsentRequests and sends the indvidiual object to the AbsentRequesTeacher card 
   return (
     <>
       <div className="absences">

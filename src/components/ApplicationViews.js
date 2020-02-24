@@ -33,7 +33,7 @@ if(activeUser.prefixId === 4){
         <>
         
             <ProviderProvider>
-            <h1>Events</h1>
+            <h1>Planner</h1>
               <div className="eventsPlusTeachers">
                 <Route exact path="/" render={props => 
                   <EventList {...props} />}

@@ -34,3 +34,7 @@ strong {
 address {
   margin: 0 0 1.5em;
 }
+
+body{
+  background-color: rgba(223, 226, 230, 0.918);
+}

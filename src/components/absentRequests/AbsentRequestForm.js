@@ -7,6 +7,7 @@ export default (props) => {
     const { addAbsentRequest } = useContext(AbsentRequestContext)
     const [absentRequest, setAbsentRequest] = useState({})
     
+    // useState to make the absentRequest form a controlled component; the absentRequest state variable is set by setAbsentRequest 
 
     const { users } = useContext(UserContext)
 
@@ -16,8 +17,7 @@ export default (props) => {
       }
     })
 
-    
-
+    // onChange sets the state variable absentRequest to the object that contains value from the name attribute on the input 
     const handleControlledInputChange = (evt) => {
      
         const newAbsentRequest = Object.assign({}, absentRequest)
@@ -27,9 +27,8 @@ export default (props) => {
     }
 
     
-
     const constructNewAbsentRequest = () => {
-         
+        // POST method on that adds an absentRequest  
             addAbsentRequest({
                 title: absentRequest.title,              
                 approved:false,
@@ -45,7 +44,7 @@ export default (props) => {
         }
     
 
-
+// JSX to display the absentRequestForm 
     return (
         <form className="AbsentRequestForm">
             <h2 className="AbsentRequestForm__title">Make An Absent Request</h2>
