@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react"
 import "./Messages.css"
 import { MessageTypeContext } from "./MessageTypeProvider"
 import { MessageContext } from "./MessageProvider"
+import { Button } from "reactstrap"
 
 export default (props) => {
 
@@ -71,7 +72,10 @@ export default (props) => {
 
     return (
         <form className="messageForm">
-            <h2 className="messageForm__title">{editMode ? "Edit Message" : "Create a Message"}</h2>
+          <div className="messageAndPaperLogo">
+              <h2 className="messageForm__title">{editMode ? "Edit Message" : "Create a Message"}</h2>
+              <img className="paperLogo" src={require ("../images/paper.svg")}/> 
+          </div>
             <fieldset>
             <div className="form-group">
                 <label htmlFor="text">Message</label>
@@ -120,7 +124,7 @@ export default (props) => {
                     />
             </div>
         </fieldset>
-            <button type="submit" onClick={evt => 
+            <Button color="info" type="submit" onClick={evt => 
                     {evt.preventDefault() 
                     constructNewMessage()
                     setMessage({
@@ -130,7 +134,7 @@ export default (props) => {
                       "userId":""
                   })
                     }}
-                className="btn btn-primary">{editMode ? "Edit Message" : "Add a Message"}</button>
+                className="btn btn-primary">{editMode ? "Edit Message" : "Add a Message"}</Button>
         </form>
     )
 }

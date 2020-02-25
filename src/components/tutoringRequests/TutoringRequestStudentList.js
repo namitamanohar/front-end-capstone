@@ -16,12 +16,12 @@ export default (props) => {
 // filter out the tutoringRequest that corresponds with the active user; the property activeUserId corresponds with the student
 
    const activeTutoringRequests = tutoringRequests.filter(
-     t => {return t.activeUserId = parseInt(localStorage.getItem("digi_student"),10) }
+     t => {return t.activeUserId === parseInt(localStorage.getItem("digi_student"),10) }
    ) || {} 
 
 //  only shows tutoringRequest that are today or upcoming 
-   const CurrentTutoringRequests = tutoringRequests.filter( e => {
-    if(moment(e.date).valueOf() > Date.now()){
+   const CurrentTutoringRequests = activeTutoringRequests.filter( e => {
+    if(moment(e.date).valueOf() + 86400000 > Date.now()){
         return e 
     }
 }) || {}

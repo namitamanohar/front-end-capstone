@@ -15,6 +15,7 @@ import { MessageContext } from "./messages/MessageProvider";
 import { MessageTypeContext } from "./messages/MessageTypeProvider";
 import MessageList from "./messages/MessageList";
 import TutoringRequestAsideList from "./tutoringRequests/TutoringRequestAsideList";
+import PlannerTitle from "./header/PlannerTitle";
 
 
 
@@ -31,10 +32,11 @@ console.log("activeUseron app views", activeUser)
 if(activeUser.prefixId === 4){
       return (
         <>
-        
             <ProviderProvider>
-            <h1>Planner</h1>
-              <div className="eventsPlusTeachers">
+            <Route exact path="/">
+              <PlannerTitle /> 
+            </Route>
+              <div className="eventsPlusTeachers"> 
                 <Route exact path="/" render={props => 
                   <EventList {...props} />}
                   />

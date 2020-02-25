@@ -82,11 +82,11 @@ export default (props) => {
         
         }
     
-// JSX code that displays the form if in editMode the h2 and submit button will be different
+// JSX code that displays the form if in editMode the h1 and submit button will be different
 
     return (
         <form className="TutoringRequestForm">
-            <h2 className="TutoringRequestForm__title">{editMode ? "Edit Tutoring Request" : "Make Tutoring Request"}</h2>
+            <h1 className="TutoringRequestForm__title">{editMode ? "Edit Tutoring Request" : "Make Tutoring Request"}</h1>
             <fieldset>
             <div className="form-group">
                 <label htmlFor="title">Tutoring Reason</label>

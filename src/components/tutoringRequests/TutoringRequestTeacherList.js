@@ -36,7 +36,10 @@ export default () => {
   return (
     <>
       <div className="tutoring">
+        <div className="tutoringAndTutorLogo">
             <h3>Tutoring Requests</h3>
+            <img className="tutorLogo" src={require ("../images/tutor.svg")}/> 
+        </div>
           <div className="tutoringRequests">
             {
               CurrentTutoringRequests.map(a =>

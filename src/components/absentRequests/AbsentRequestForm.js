@@ -47,7 +47,10 @@ export default (props) => {
 // JSX to display the absentRequestForm 
     return (
         <form className="AbsentRequestForm">
-            <h2 className="AbsentRequestForm__title">Make An Absent Request</h2>
+            <div className="absentAndTestLogo">
+                <h2 className="AbsentRequestForm__title">Make An Absent Request</h2>
+                <img className="testLogo" src={require ("../images/test.svg")}/> 
+            </div>
             <fieldset>
             <div className="form-group">
                 <label htmlFor="title">Reason for Absence</label>

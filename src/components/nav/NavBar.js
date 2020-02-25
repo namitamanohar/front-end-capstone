@@ -75,7 +75,7 @@ export default (props) => {
   return (
     <ul className="navBar">
       <NavbarBrand className="mr-auto">DigiPlan
-          <img className="teacherLogo" src={require ("../images/apple.svg")}/> 
+          <img className="teacherLogo" src={require ("../images/appleBook.svg")}/> 
       </NavbarBrand>
 
       <li className="navbar__item active">

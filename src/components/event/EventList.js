@@ -69,7 +69,7 @@ export default (props) => {
         // maps CurrentEventsAndTutoringRequest and pushes the individiual object to the Event component 
         //  AddEvent Icon button that onClick opens the ModalBody that contains the EventForm component
         <>
-    
+      
             <div className="events-Button">
                 <div className="events">
 
@@ -86,7 +86,7 @@ export default (props) => {
                     />                   
                 </div>
                 <Modal isOpen={modal} toggle={toggle} className={className}>
-                    <ModalHeader toggle={toggle}>Events </ModalHeader>
+                    <ModalHeader toggle={toggle}>Time to Plan! </ModalHeader>
 
                     <ModalBody>
                         <EventForm setModal={setModal} {...props} />
