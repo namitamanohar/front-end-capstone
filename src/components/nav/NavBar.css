@@ -42,8 +42,8 @@
     height: 35px;
 }
 .teacherLogo{
-    width: 35px; 
-    height: 35px;
+    width: 48px; 
+    height: 48px;
     padding-bottom: 5px;
 }
 
@@ -55,4 +55,13 @@
   font-size: 18px;
   justify-content: space-evenly;
   padding: .5rem;
+}
+.calendarLogo{
+  margin-top: 23px;
+  margin-left: 10px;
+  width: 45px; 
+  height: 45px;
+}
+.plannerAndImage{
+  display:flex; 
 }

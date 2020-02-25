@@ -18,3 +18,12 @@
 .messageForm{
   margin: 1em; 
 }
+.messageAndPaperLogo{
+  display:flex; 
+}
+.paperLogo{
+  width: 45px;
+  height:45px; 
+  margin-top: 15px;
+  margin-left: 5px; 
+}

@@ -33,7 +33,10 @@ if(activeUser.prefixId === 4){
         <>
         
             <ProviderProvider>
-            <h1>Planner</h1>
+            <div className="plannerAndImage">
+                <h1>Planner</h1>
+                <img className="calendarLogo" src={require ("./images/calendar.svg")}/> 
+            </div>
               <div className="eventsPlusTeachers">
                 <Route exact path="/" render={props => 
                   <EventList {...props} />}

@@ -25,7 +25,10 @@ export default () => {
   return (
     <>
       <div className="absences">
+      <div className="absentAndTestLogo">
         <h3>Absent Requests</h3>
+        <img className="testLogo" src={require ("../images/test.svg")}/> 
+      </div>
         <div className="absentRequests">
           {
             activeTeacherAbsentRequests.map(a =>

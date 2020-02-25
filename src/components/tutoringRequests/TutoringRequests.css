@@ -50,3 +50,12 @@
   border-radius: 10%
 
 }
+.tutorLogo{
+  width:45px; 
+  height: 45px; 
+  margin-top: 15px; 
+  margin-left: 8px;
+}
+.tutoringAndTutorLogo{
+  display: flex;
+}

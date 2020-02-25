@@ -72,7 +72,10 @@ export default (props) => {
 
     return (
         <form className="messageForm">
-            <h2 className="messageForm__title">{editMode ? "Edit Message" : "Create a Message"}</h2>
+          <div className="messageAndPaperLogo">
+              <h2 className="messageForm__title">{editMode ? "Edit Message" : "Create a Message"}</h2>
+              <img className="paperLogo" src={require ("../images/paper.svg")}/> 
+          </div>
             <fieldset>
             <div className="form-group">
                 <label htmlFor="text">Message</label>
