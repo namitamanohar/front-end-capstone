@@ -29,3 +29,11 @@
 .addEvent-button{
   margin: auto; 
 }
+.plannerAndTeacher{
+  display:flex; 
+}
+.teacherLogo{
+  margin-top: 23px; 
+  margin-left:5px; 
+
+}
