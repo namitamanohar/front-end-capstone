@@ -1,68 +1,157 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# DigiPlan
 
-## Available Scripts
+DigiPlan is a React web app with full CRUD functionality that allows   
 
-In the project directory, you can run:
 
-### `npm start`
+ <img src="./public/ParentDashboardFeedFido.PNG" height="450px" width="250px">     <img src="./public/ChildDashboardFeedFido.PNG" height="450" width="250">      <img src="./public/ChoreGraphFeedFido.PNG" height="450" width="250">
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Installation
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Install react packages:
 
-### `npm test`
+```bash
+npx create-react-app 
+npm i --save react-router-dom
+npm install --save bootstrap
+npm install --save reactstrap react react-dom
+npm instal moment --save
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+npm start from the root directory to run application
+```
 
-### `npm run build`
+## Database sample
+Create a json file named database.json with the provided sample data and run a json server watching database.json on port 8088
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```JSON
+{
+  "users": [],
+  "userTypes": [
+    {
+      "id": 1,
+      "name": "Student"
+    },
+    {
+      "id": 2,
+      "name": "Teacher"
+    }
+  ],
+  "prefixes": [
+    {
+      "id": 1,
+      "name": "Ms"
+    },
+    {
+      "id": 2,
+      "name": "Mrs"
+    },
+    {
+      "id": 3,
+      "name": "Mr"
+    },
+    {
+      "id": 4,
+      "name": ""
+    }
+  ],
+  "subjects": [
+    {
+      "id": 1,
+      "name": "Math"
+    },
+    {
+      "id": 2,
+      "name": "Science"
+    },
+    {
+      "id": 3,
+      "name": "History"
+    },
+    {
+      "id": 4,
+      "name": "English"
+    },
+    {
+      "id": 5,
+      "name": "Computer Science"
+    },
+    {
+      "id": 6,
+      "name": "Music"
+    },
+    {
+      "id": 7,
+      "name": "Physical Education"
+    },
+    {
+      "id": 8,
+      "name": ""
+    }
+  ],
+  "events": [],
+  "eventTypes": [
+    {
+      "id": 1,
+      "name": "Game"
+    },
+    {
+      "id": 2,
+      "name": "HW"
+    },
+    {
+      "id": 3,
+      "name": "Tests"
+    },
+    {
+      "id": 4,
+      "name": "Projects"
+    },
+    {
+      "id": 5,
+      "name": "Work Shift"
+    },
+    {
+      "id": 6,
+      "name": "Other"
+    }
+  ],
+  "tutoringRequests": [
+  ],
+  "absentRequests": [
+   
+  ],
+  "messages": [
+    
+  ],
+  "messageTypes": [
+    {
+      "id": 1,
+      "name": "Summer Opportunity"
+    },
+    {
+      "id": 2,
+      "name": "Study Tip"
+    },
+    {
+      "id": 3,
+      "name": "Class Announcement"
+    },
+    {
+      "id": 4,
+      "name": "Extra Credit"
+    }
+  ]
+}
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Cloudinary
 
-### `npm run eject`
+1. Go to cloudinary.com and create an account 
+2. Create a new folder called TeacherUploads
+3. On the dasboard, click more under account details, click on the down arrow next to the API Base URL and copy the image upload link
+3. Change line 30 and 33 to match with your cloudinary account 
+4. Follow the directions on https://www.youtube.com/watch?v=hlYczGvLlDY&t=483s if more assistance is need
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Usage
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+1. Click on the Register Student Button

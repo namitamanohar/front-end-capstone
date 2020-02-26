@@ -1,11 +1,11 @@
-.autoringRequests {
+.absentRequests {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
   margin: 20px; 
 }
 
-.autoringRequest{
+.absentRequest{
     flex-basis: 20%;
     margin: 1em;
     padding: 1em;

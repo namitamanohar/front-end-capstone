@@ -32,7 +32,7 @@ export default (props) => {
             addAbsentRequest({
                 title: absentRequest.title,              
                 approved:false,
-                date: absentRequest.AbsentRequestDate,
+                date: absentRequest.absentRequestDate,
                 startTime:absentRequest.startTime, 
                 endTime:absentRequest.endTime,
                 timestamp:Date.now(),
