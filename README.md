@@ -1,16 +1,15 @@
 # DigiPlan
 
-DigiPlan is a React web app with full CRUD functionality that allows   
+DigiPlan is a React web app with full CRUD functionality that allows
 
-
- <img src="./public/ParentDashboardFeedFido.PNG" height="450px" width="250px">     <img src="./public/ChildDashboardFeedFido.PNG" height="450" width="250">      <img src="./public/ChoreGraphFeedFido.PNG" height="450" width="250">
+ <img src="frontEndImage.PNG" height="450px" width="250px">
 
 ## Installation
 
 Install react packages:
 
 ```bash
-npx create-react-app 
+npx create-react-app
 npm i --save react-router-dom
 npm install --save bootstrap
 npm install --save reactstrap react react-dom
@@ -20,6 +19,7 @@ npm start from the root directory to run application
 ```
 
 ## Database sample
+
 Create a json file named database.json with the provided sample data and run a json server watching database.json on port 8088
 
 ```JSON
@@ -117,10 +117,10 @@ Create a json file named database.json with the provided sample data and run a j
   "tutoringRequests": [
   ],
   "absentRequests": [
-   
+
   ],
   "messages": [
-    
+
   ],
   "messageTypes": [
     {
@@ -146,11 +146,11 @@ Create a json file named database.json with the provided sample data and run a j
 
 ## Cloudinary
 
-1. Go to cloudinary.com and create an account 
+1. Go to cloudinary.com and create an account
 2. Create a new folder called TeacherUploads
 3. On the dasboard, click more under account details, click on the down arrow next to the API Base URL and copy the image upload link
-3. Change line 30 and 33 to match with your cloudinary account 
-4. Follow the directions on https://www.youtube.com/watch?v=hlYczGvLlDY&t=483s if more assistance is need
+4. Change line 30 and 33 to match with your cloudinary account
+5. Follow the directions on https://www.youtube.com/watch?v=hlYczGvLlDY&t=483s if more assistance is need
 
 ## Usage
 
