@@ -2,7 +2,7 @@
 
 DigiPlan is a React web app with full CRUD functionality that allows for students to organize their upcoming events including homework assignments, tests, projects, sporting events, and work schedule. Students can additionally request a tutoring session from their teacher through the app which will then be approved or declined. If a student is absent for a day students can request the notes/classwork through a form. The teacher will then receive this request and then attach a PDF of the work done in class. The teacher can also send announcements via the message board which will then be displayed on the student's homepage.
 
- <img src="./frontEndImage.PNG" height="450px" width="250px">
+ <img src="./frontEndImage.PNG" height="450px" width="700px">
 
 ## Installation
 
@@ -154,4 +154,14 @@ Create a json file named database.json with the provided sample data and run a j
 
 ## Usage
 
-1. Click on the Register Student Button
+1. Click on Register Teacher and add a few teachers. This will allow the student view to show the teachers. 
+2. Click on the Register Student Button
+3. Add an event under the planner section by clicking on the plus button. 
+4. Edit and test delete the event as well. 
+5. Add a tutoring request. 
+6. Click on the the absent request tab and add an absent request. 
+7. Login into the teacher that you made a tutoring request and absent request for. 
+8. Accept the tutoring request. 
+9. Send a file when you open the choose file button on the absent request. 
+10. Log back into the student view. The tutoring request will be shown in the events section. 
+11. Click on the absent request and see the work sent from the teacher. 
