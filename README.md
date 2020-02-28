@@ -4,13 +4,11 @@ DigiPlan is a React web app with full CRUD functionality that allows for student
 
  <img src="./frontEndImage.PNG" height="450px" width="700px">
  
-
-
-<div align="center">
-  <a href="https://www.youtube.com/watch?v=JRmgrLiXNBE&feature=youtu.be"><img src="https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg" alt="DEMO VIDEO"></a>
-</div>
-
-
+  <iframe width="560" height="315"
+src="https://www.youtube.com/watch?v=JRmgrLiXNBE&feature=youtu.be" 
+frameborder="0" 
+allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+allowfullscreen></iframe>
 
 ## Installation
 
