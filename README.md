@@ -13,8 +13,7 @@ Video Demo
 Click on video above or visit https://www.youtube.com/watch?v=JRmgrLiXNBE&feature=youtu.be to view the live demo.
 
  
- 
- 
+
 
 ## Installation
 
