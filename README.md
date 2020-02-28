@@ -8,6 +8,8 @@ DigiPlan is a React web app with full CRUD functionality that allows for student
 
 
 
+<video src="https://www.youtube.com/watch?v=JRmgrLiXNBE&feature=youtu.be" width="320" height="200" controls preload></video>
+
 ## Installation
 
 Install react packages:
@@ -158,14 +160,14 @@ Create a json file named database.json with the provided sample data and run a j
 
 ## Usage
 
-1. Click on Register Teacher and add a few teachers. This will allow the student view to show the teachers. 
+1. Click on Register Teacher and add a few teachers. This will allow the student view to show the teachers.
 2. Click on the Register Student Button
-3. Add an event under the planner section by clicking on the plus button. 
-4. Edit and test delete the event as well. 
-5. Add a tutoring request. 
-6. Click on the the absent request tab and add an absent request. 
-7. Login into the teacher that you made a tutoring request and absent request for. 
-8. Accept the tutoring request. 
-9. Send a file when you open the choose file button on the absent request. 
-10. Log back into the student view. The tutoring request will be shown in the events section. 
-11. Click on the absent request and see the work sent from the teacher. 
+3. Add an event under the planner section by clicking on the plus button.
+4. Edit and test delete the event as well.
+5. Add a tutoring request.
+6. Click on the the absent request tab and add an absent request.
+7. Login into the teacher that you made a tutoring request and absent request for.
+8. Accept the tutoring request.
+9. Send a file when you open the choose file button on the absent request.
+10. Log back into the student view. The tutoring request will be shown in the events section.
+11. Click on the absent request and see the work sent from the teacher.
