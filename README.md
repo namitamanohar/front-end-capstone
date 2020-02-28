@@ -3,6 +3,9 @@
 DigiPlan is a React web app with full CRUD functionality that allows for students to organize their upcoming events including homework assignments, tests, projects, sporting events, and work schedule. Students can additionally request a tutoring session from their teacher through the app which will then be approved or declined. If a student is absent for a day students can request the notes/classwork through a form. The teacher will then receive this request and then attach a PDF of the work done in class. The teacher can also send announcements via the message board which will then be displayed on the student's homepage.
 
  <img src="./frontEndImage.PNG" height="450px" width="700px">
+ 
+ <video src="FrontEndCapstoneVideo.mp4" width="320" height="200" controls preload></video>
+
 
 ## Installation
 
